@@ -1,4 +1,4 @@
-# Your startup name here
+# AuthorPoll
 
 [My Notes](notes.md)
 
