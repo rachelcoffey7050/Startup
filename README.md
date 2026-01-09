@@ -44,9 +44,16 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Option to login
+- Page with all the polls and ability to choose one
+- Ability to choose desired option in poll
+- abiltiy to sumbit answer
+- ability to change answer before pressing sumbit
+- once submitted, see totals from all participants
+- totals update in real time
+- ability to comment
+- able to see comments from other users, updated in real time
+- ability to create a poll, which is posted to list of polls
 
 ### Technologies
 
