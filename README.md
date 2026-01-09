@@ -38,8 +38,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ```mermaid
 sequenceDiagram
     actor You
-    actor Website
-    You->>Website: Replace this with your design
+    actor Me
+    actor Server
+    You->>Server: Poll
+    Server-->>Me: Poll
+    Me->>Server: Vote
+    Me->>Server: Comment
+    Server-->>You: Vote
+    Server-->>You: Comment
+    
 ```
 
 ### Key features
