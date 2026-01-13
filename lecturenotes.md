@@ -57,5 +57,8 @@ Guidelines for getting help:
 Console - navigates the disk, runs console applications, run scripts. (git bash)
 vi/vim is on everyone's computers. Important to know.
 
+# Server
+Tech stack
+
 
 
