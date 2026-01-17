@@ -14,6 +14,8 @@ My Publlic elastic IP address is: 3.94.41.68
 This is the command to ssh into the server. Remember to be in the correct directory. rache@RachelPC MINGW64 /c/cs260
 $ ssh -i rachel-cs260-key.pem ubuntu@107.23.18.145
 
+The domain for my website is [storypolls.click](storypolls.click)
+
 ## Caddy
 
 No problems worked just like it said in the [instruction](https://github.com/webprogramming260/.github/blob/main/profile/webServers/https/https.md).
