@@ -24,6 +24,8 @@ After getting stuck on caddy for more than an hour because of some mysterious ti
 
 The hardest part was figuring what tags would be best for later implementation of the features we haven't learned about yet. I think my code looks okay, but I may have to edit it once I understand exactly what I'll be doing in the other steps of this project.
 
+It's difficult to resist the temptation to make everything as pretty as possible, but I have to trust it will be better to wait for the next step.
+
 ## CSS
 
 This took a couple hours to get it how I wanted. It was important to make it responsive and Bootstrap helped with that. It looks great on all kinds of screen sizes.
