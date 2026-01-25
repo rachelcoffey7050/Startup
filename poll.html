@@ -23,7 +23,45 @@
     </header>
 
     <main>
-        
+        <div id="voteView"></div>
+            <h2>Example Poll Title</h2>
+            <p>Description: Help me choose!</p>
+            <fieldset>
+                <legend>Poll Options</legend>
+                <ul>
+                    <li><label for="radio1">option crazy</label>
+                    <input type="radio" id="radio1" name="varRadio" value="radio1" /></li>
+                    <li><label for="radio2">option funny</label>
+                    <input type="radio" id="radio2" name="varRadio" value="radio2" /></li>
+                    <li><label for="radio3">option thoughful</label>
+                    <input type="radio" id="radio3" name="varRadio" value="radio3" /></li>
+                </ul>
+                <button type="submit">Vote</button>
+        </fieldset>
+        <a href="poll.html">Next Poll</a>
+        </div>
+
+        <div id="resultsView" > 
+            <!-- style="display:none;" -->
+            <h2>Example Poll Title</h2>
+            <p>Description: Help me choose!</p>
+            <!-- This is the result view. The Javascript will toggle between this and the above-->
+            <fieldset>
+                <legend>Poll Options</legend>
+                <ul>
+                    <li><label for="radio1">option crazy</label>
+                    <input type="radio" id="radio1" name="varRadio" value="radio1" />
+                    <meter id="votesMeter" min="0" max="100" value="0" optimum="100" low="33"></meter> <span id="voteCount">0</span></li>
+                    <li><label for="radio2">option funny</label>
+                    <input type="radio" id="radio2" name="varRadio" value="radio2" />
+                    <meter id="votesMeter" min="0" max="100" value="0" optimum="100" low="33"></meter> <span id="voteCount">0</span></li>
+                    <li><label for="radio3">option thoughful</label>
+                    <input type="radio" id="radio3" name="varRadio" value="radio3" />
+                    <meter id="votesMeter" min="0" max="100" value="0" optimum="100" low="33"></meter> <span id="voteCount">0</span></li>
+                </ul>
+            </fieldset>
+            <a href="poll.html">Next Poll</a>
+        </div>
     </main>
 
 
