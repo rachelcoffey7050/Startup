@@ -23,6 +23,23 @@
     </header>
 
     <main>
+        <h2>Create a Poll</h2>
+        <p>The more polls there are, the more fun we'll have!</p>
+        <form id="CreatePollForm" action="index.html" method="post">
+            <label for="tile">Poll title: </label>
+            <input type="text" id="title" placeholder="Question here"/>
+            <label for="description">Descritption/extra details: </label>
+            <input type="text" id="description"/>
+
+            <h3>Options</h3> 
+            <div id="optionsContainer"> 
+                <input type="text" name="option" placeholder="Option 1" required> 
+                <input type="text" name="option" placeholder="Option 2" required> 
+            </div> 
+            <button type="button" id="addOptionBtn">Add another option</button> 
+            
+            <button type="submit">Create Poll</button>
+        </form>
     </main>
 
 
