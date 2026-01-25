@@ -22,9 +22,9 @@ After getting stuck on caddy for more than an hour because of some mysterious ti
 
 ## HTML
 
-This was easy. I was careful to use the correct structural elements such as header, footer, main, nav, and form. The links between the three views work great using the `a` element.
+The hardest part was figuring what tags would be best for later implementation of the features we haven't learned about yet. I think my code looks okay, but I may have to edit it once I understand exactly what I'll be doing in the other steps of this project.
 
-The part I didn't like was the duplication of the header and footer code. This is messy, but it will get cleaned up when I get to React.
+It's difficult to resist the temptation to make everything as pretty as possible, but I have to trust it will be better to wait for the next step.
 
 ## CSS
 

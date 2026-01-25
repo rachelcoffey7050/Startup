@@ -55,9 +55,11 @@ sequenceDiagram
 - ability to change answer before pressing sumbit
 - once submitted, see totals from all participants
 - totals update in real time
+- ability to create a poll, which is posted to list of polls
+
+Additional features that I will implement if I have time:
 - ability to comment
 - able to see comments from other users, updated in real time
-- ability to create a poll, which is posted to list of polls
 
 ### Technologies
 
@@ -80,15 +82,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I created five html pages: index, poll, create, about, and login.
+- [x] **Proper HTML element usage** - I spent the time necessary to figure out what would be the best html elements to use knowing what I will add in other sections of the project.
+- [x] **Links** - I have links between my html pages as needed and added a link to my github in the footer
+- [x] **Text** - There is textual description throughout.
+- [x] **3rd party API placeholder** - an image on the about page will be from a 3rd party
+- [x] **Images** - There is an image on the about page and an icon in the tab.
+- [x] **Login placeholder** - I have a login page.
+- [x] **DB data placeholder** - Input for creating polls, voting, and login. The polls and results will pull from the database.
+- [x] **WebSocket placeholder** - The vote results represent realtime voting
 
 ## 🚀 CSS deliverable
 
