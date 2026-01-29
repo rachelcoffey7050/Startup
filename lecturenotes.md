@@ -119,4 +119,40 @@ Bootstrap
 - ` class ="btn btn-outline-primary"`
 - you have to know the class you're importing, but other than that just import.
 - Some of the bootstrap stuff requires javascript which requires an extra import.
-- 
+
+
+## Jan 29
+
+Build something that looks like a temple of God - make what you create greater than yourself.
+
+### Javascript
+Javascript is an interpreted language but every computer with a browser has a javascript interpreter. 
+But we will need to install in interpreter so we can also run javascript on the server.
+
+Javascript was made for client-side interactivity (rather than server side). Inspired by Scheme programming language which is a list oriented language.
+It looks a little like C. 
+Dynamically typed like python, so we don't have to declare all the types. If you want type annotations, use typescript.
+
+First Program:
+```
+const msg = "Hello world";
+const msg = new String(passedInString)
+
+1 + 'cow' = '1cow'
+
+console.log('Hello' + ' ' + "world")
+document.body.innerText =
+document.body.innerHTML = 
+```
+Javascript is a very forgiving language.
+Console is an object with funtion log.
+Functions are first order objects (so you can pass it directly into another function.
+Document is the webpage. You can edit the text directly or edit the HTML.
+Semi-colons are unnessesary, unless you want multiple statements on one line.
+
+For each function - `words.forEach((word) => console.log(word));` This is an arrow function, which passes the function as a parameter.
+
+Node JS - Javascript that runs on your computer (not brower). You will have to download. So you can run your backend code. 
+Once you've installed, set a breakpoint, and debug with f5.
+
+NPM - Node package manager - bring in packages from elsewhere.
