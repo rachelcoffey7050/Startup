@@ -6,6 +6,7 @@ body {
 
 header {
   flex: 0 80px;
+  justify-content: space-around;
 }
 
 main {
@@ -14,11 +15,15 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  background-color: aliceblue;
+  background-color: rgb(235, 236, 210);
 }
 
 footer {
   flex: 0 30px;
+}
+
+footer span {
+  float:left
 }
 
 menu {
@@ -27,15 +32,29 @@ menu {
   /*  overwrite Bootstrap so the menu does not wrap */
   flex-direction: row !important;
   list-style: none;
+  padding: 0.5em;
+  justify-content: center;
 }
 
-.navbar-brand {
+h1 {
   padding-left: 0.5em;
-  border-bottom: solid rgb(182, 182, 182) thin;
+  padding-top: 0.5em;
+  text-align: center;
 }
 
-menu .nav-item {
+menu li {
   padding: 0 1em;
+  text-decoration: none;
+  color: black;
+}
+
+menu a {
+  text-decoration: none;
+  color: black;
+}
+
+menu a:hover {
+  text-decoration: underline;
 }
 
 footer a {
