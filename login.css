@@ -1,0 +1,18 @@
+
+h1 {
+    color: rgb(39, 19, 57);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    border: thick groove rgb(39, 19, 57);
+    padding: 1em;
+    padding-top: 2em;
+    margin-top: 3em;
+}
+
+main {
+    justify-content: center;
+}
