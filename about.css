@@ -1,32 +1,17 @@
-.picture-box {
-  height: calc(100px + 1em);
-  margin-bottom: 1em;
-  padding: 0.5em;
-  background: rgb(136, 163, 199);
-  border-radius: 5px;
+main {
+  background-image: url(books.jpg);
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center;
 }
 
-.quote-box {
-  margin-top: 1em;
-  padding: 0.5em;
-  border-radius: 5px;
-  background-color: rgb(136, 163, 199);
+main p {
+  font-size: 1.2em;
+  padding: 2em;
+  color: black;
 }
 
-.quote {
-  font-style: italic;
-}
-
-.author {
-  font-weight: bold;
-  text-align: right;
-}
-
-.author::before {
-  content: " - ";
-}
-
-#picture img {
-  width: 100%;
-  height: 100%;
+section {
+  background-color: rgb(235, 236, 210);
+  width: 75%;
 }
