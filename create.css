@@ -9,12 +9,22 @@ h2 {
     padding: 2em;
 }
 
-.my-custom-btn { 
-    background-color: rgb(39, 19, 57); 
-    color: rgb(235, 236, 210); 
+ul li {
+    list-style: none;
+    padding: 0.3em;
+    /* width: 10em; */
 }
 
-.my-custom-btn:hover { 
-    background-color: rgb(137, 139, 90); 
-    color: rgb(235, 236, 210); 
+ol li {
+    padding: 0.3em;
+}
+
+/* textarea {
+    align-self: end;
+} */
+
+h3 {
+    /* position: center; */
+    font-family: "Eagle Lake";
+    padding-top: 0.5em;
 }
