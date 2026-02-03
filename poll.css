@@ -17,14 +17,56 @@ ul {
     gap: 0.5em;
 }
 
-ul li {
+#voteView ul li {
     display: grid;
     list-style: none;
     padding: 0.5em;
-    grid-template-columns: 150px 1fr;
-    align-items: start; 
+    grid-template-columns: 200px 1fr auto;
+    align-items: center; 
     border: 2px solid white;
     transition: 0.2s;
     border-radius: 8px;
     /* background-color: rgb(39, 19, 57); */
 }
+
+#resultsView, #voteView {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px; 
+     margin: 0 auto;
+}
+
+#resultsView ul li {
+    display: grid;
+    list-style: none;
+    grid-template-columns: 200px 1fr auto;
+    align-items: center; 
+    transition: 0.2s;
+    gap: 0.5em;
+}
+
+#resultsView ul li label {
+    border: 2px solid white;
+    border-radius: 8px;
+    padding: 0.5em;
+}
+
+#resultsView meter {
+  width: 150px;
+  height: 2em;
+}
+
+meter::-webkit-meter-bar {
+  background: rgb(235, 236, 210);
+}
+
+meter::-webkit-meter-optimum-value {
+  background: rgb(39, 19, 57);
+}
+
+meter::-moz-meter-bar {
+  background: rgb(39, 19, 57);
+}
+
+
