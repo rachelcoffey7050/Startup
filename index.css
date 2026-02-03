@@ -1,0 +1,17 @@
+
+h2 {
+    font-family: "Eagle Lake";
+    text-decoration: underline;
+}
+
+article {
+    border: thin solid rgb(39, 19, 57);
+    padding: 1em;
+    width: 75%;
+    box-shadow: 2px 2px 2px rgb(137, 139, 90);
+}
+
+article a {
+    color: rgb(39, 19, 57);
+    font-family: serif;
+}
