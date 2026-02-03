@@ -156,3 +156,24 @@ Node JS - Javascript that runs on your computer (not brower). You will have to d
 Once you've installed, set a breakpoint, and debug with f5.
 
 NPM - Node package manager - bring in packages from elsewhere.
+
+## Feb 3 - React Basics
+
+### Web Frameworks
+React is for Javascript what bootstrap is for css.
+
+JSX: Combines javascript and html. Evaluates the javascript to render the result. 
+You need a transpiler (called Babel) that changes it into javascript function call which dynamically builds html in the DOM.
+
+Components: a function. So you can have multiple of the same type of thing. 
+```
+const Hello = () => {
+  return <div> Hello React</div>;}
+```
+Returns JSX. It injects the function inside the element selected as a child. 
+You can pass a property to a component. You can pass in multiple, but only take out the ones you want.
+You can also give a default value. 
+It is asycronous, so the change happens out of your code. So by the end of your function, the change hasn't happened yet.
+
+At the next deliverable, you will only have one html page, all that html code goes into the jsx files. You will inject the page with the correct property into the html.
+vite will do what liveserver has been doing in the past.
