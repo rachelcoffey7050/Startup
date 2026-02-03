@@ -6,25 +6,50 @@ main {
 h2 {
     font-family: "Eagle Lake";
     text-decoration: underline;
-    padding: 2em;
+    padding: 1em;
 }
 
 ul li {
+    display: grid;
     list-style: none;
     padding: 0.3em;
-    /* width: 10em; */
+    grid-template-columns: 150px 1fr;
+    align-items: start; 
+    margin-bottom: 1em;
+}
+
+textarea { width: 100%; 
+    padding: 0.4em; 
+    box-sizing: border-box;
+    border-color: rgb(39, 19, 57);
+    color:rgb(39, 19, 57);
+}
+
+input::placeholder {
+    color: rgb(184, 185, 156);
+}
+
+input {
+    border-color: rgb(39, 19, 57);
+    color: rgb(39, 19, 57);
 }
 
 ol li {
     padding: 0.3em;
 }
 
-/* textarea {
-    align-self: end;
-} */
-
 h3 {
-    /* position: center; */
+    text-align: center;
     font-family: "Eagle Lake";
     padding-top: 0.5em;
+}
+
+#addOptionBtn {
+    text-align: center;
+}
+
+#btnRow {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
 }

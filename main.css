@@ -2,6 +2,7 @@ body {
   display: flex;
   flex-direction: column;
   min-width: 375px;
+  color: rgb(39, 19, 57);
 }
 
 header {
