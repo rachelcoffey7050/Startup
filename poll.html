@@ -17,6 +17,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="poll.css" />
   </head>
   <body>
     <header>
@@ -50,10 +52,13 @@
                         <li><label for="radio3">option thoughful</label>
                         <input type="radio" id="radio3" name="varRadio" value="radio3" /></li>
                     </ul>
+                    <div id="btnRow">
+                    <button class="btn my-custom-btn" type="submit">Vote</button>
+                    <a href="poll.html" class="btn my-custom-btn">Next Poll</a>
+                    </div>
                 </form>
-                <button type="submit">Vote</button>
+                
         </fieldset>
-        <a href="poll.html">Next Poll</a>
         </div>
 
         <div id="resultsView" > 
@@ -72,7 +77,9 @@
                     <meter id="votesMeter" min="0" max="100" value="0" optimum="100" low="33"></meter> <span id="voteCount2">0</span></li>
                 </ul>
             </fieldset>
-            <a href="poll.html">Next Poll</a>
+            <div id="btnRow">
+            <a class="btn my-custom-btn" href="poll.html">Next Poll</a>
+            </div>
         </div>
     </main>
 
