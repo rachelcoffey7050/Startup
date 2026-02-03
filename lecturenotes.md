@@ -90,4 +90,90 @@ Caddy - looks at the request and decides where it should go. Set up for on port 
 
 HTTPS - you need a host name. But Caddy takes care of everything else for you. sudo service restart or something like that.
 
+## Jan 27
 
+### Responsive Design
+
+CSS controls the entire layout. This needs to respond to different sizes/shapes of devices. So CSS was enhanced to be more responsive. 
+- `<meta name="viewport" content="width+device-width, initial-scale=1"/>` this is in the head to keep it from auto adjusting
+- `aside {float:right;}` making something just float on the right of the screen. It stays the same size as the screen size changes
+- `display` Display none will hide the element.
+  - Can also display as flex - flexible for children: grow (to satisfy the fr you specify), shrink, basis(ideal - could be pixels or a percent)
+  - grid (you tell it how to organize children, specifically for boxes),
+  - inline (won't resize),
+  - block (fits screen), etc.
+- `<div> class="card" </div>` - tag just tells you what it is so you can accesss it with the CSS.
+
+**media queries**
+```
+@ media (orientation: portrait) {
+  div {
+    transform: rotate(270deg);
+  }
+}
+```
+So depending on the size it will have different properties.
+
+Bootstrap
+- import bootstrap CSS
+- ` class ="btn btn-outline-primary"`
+- you have to know the class you're importing, but other than that just import.
+- Some of the bootstrap stuff requires javascript which requires an extra import.
+
+
+## Jan 29
+
+Build something that looks like a temple of God - make what you create greater than yourself.
+
+### Javascript
+Javascript is an interpreted language but every computer with a browser has a javascript interpreter. 
+But we will need to install in interpreter so we can also run javascript on the server.
+
+Javascript was made for client-side interactivity (rather than server side). Inspired by Scheme programming language which is a list oriented language.
+It looks a little like C. 
+Dynamically typed like python, so we don't have to declare all the types. If you want type annotations, use typescript.
+
+First Program:
+```
+const msg = "Hello world";
+const msg = new String(passedInString)
+
+1 + 'cow' = '1cow'
+
+console.log('Hello' + ' ' + "world")
+document.body.innerText =
+document.body.innerHTML = 
+```
+Javascript is a very forgiving language.
+Console is an object with funtion log.
+Functions are first order objects (so you can pass it directly into another function.
+Document is the webpage. You can edit the text directly or edit the HTML.
+Semi-colons are unnessesary, unless you want multiple statements on one line.
+
+For each function - `words.forEach((word) => console.log(word));` This is an arrow function, which passes the function as a parameter.
+
+Node JS - Javascript that runs on your computer (not brower). You will have to download. So you can run your backend code. 
+Once you've installed, set a breakpoint, and debug with f5.
+
+NPM - Node package manager - bring in packages from elsewhere.
+
+## Feb 3 - React Basics
+
+### Web Frameworks
+React is for Javascript what bootstrap is for css.
+
+JSX: Combines javascript and html. Evaluates the javascript to render the result. 
+You need a transpiler (called Babel) that changes it into javascript function call which dynamically builds html in the DOM.
+
+Components: a function. So you can have multiple of the same type of thing. 
+```
+const Hello = () => {
+  return <div> Hello React</div>;}
+```
+Returns JSX. It injects the function inside the element selected as a child. 
+You can pass a property to a component. You can pass in multiple, but only take out the ones you want.
+You can also give a default value. 
+It is asycronous, so the change happens out of your code. So by the end of your function, the change hasn't happened yet.
+
+At the next deliverable, you will only have one html page, all that html code goes into the jsx files. You will inject the page with the correct property into the html.
+vite will do what liveserver has been doing in the past.
