@@ -6,7 +6,8 @@ body {
 
 header {
   flex: 0 80px;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  background-color: rgb(39, 19, 57);
 }
 
 main {
@@ -18,47 +19,51 @@ main {
   background-color: rgb(235, 236, 210);
 }
 
-footer {
-  flex: 0 30px;
-}
-
-footer span {
-  float:left
-}
-
 menu {
   flex: 1;
   display: flex;
   /*  overwrite Bootstrap so the menu does not wrap */
   flex-direction: row !important;
   list-style: none;
-  padding: 0.5em;
   justify-content: center;
 }
 
 h1 {
-  padding-left: 0.5em;
   padding-top: 0.5em;
   text-align: center;
+  color: rgb(235, 236, 210);
 }
 
 menu li {
   padding: 0 1em;
   text-decoration: none;
-  color: black;
+  color: rgb(235, 236, 210);
 }
 
 menu a {
   text-decoration: none;
-  color: black;
+  color: rgb(235, 236, 210);
 }
 
 menu a:hover {
   text-decoration: underline;
 }
 
+footer {
+  flex: 0 30px;
+  background-color: rgb(39, 19, 57);
+  color: rgb(235, 236, 210);
+  padding: 0.5em;
+}
+
+footer span {
+  float: left;
+}
+
 footer a {
   float: right;
+  text-decoration: none;
+  color: rgb(235, 236, 210);;
 }
 
 @media (max-height: 600px) {
