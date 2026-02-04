@@ -21,8 +21,8 @@ ul li {
 textarea { width: 100%; 
     padding: 0.4em; 
     box-sizing: border-box;
-    border-color: rgb(39, 19, 57);
-    color:rgb(39, 19, 57);
+    border-color: var(--main-color);
+    color:var(--main-color);
 }
 
 input::placeholder {
@@ -30,8 +30,8 @@ input::placeholder {
 }
 
 input {
-    border-color: rgb(39, 19, 57);
-    color: rgb(39, 19, 57);
+    border-color: var(--main-color);
+    color: var(--main-color);
 }
 
 ol li {

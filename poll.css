@@ -26,7 +26,7 @@ ul {
     border: 2px ridge white;
     transition: 0.2s;
     border-radius: 8px;
-    /* background-color: rgb(39, 19, 57); */
+    /* background-color: var(--main-color); */
 }
 
 #resultsView, #voteView {
@@ -58,15 +58,15 @@ ul {
 }
 
 meter::-webkit-meter-bar {
-  background: rgb(235, 236, 210);
+  background: var(--background-color);
 }
 
 meter::-webkit-meter-optimum-value {
-  background: rgb(39, 19, 57);
+  background: var(--main-color);
 }
 
 meter::-moz-meter-bar {
-  background: rgb(39, 19, 57);
+  background: var(--main-color);
 }
 
 
