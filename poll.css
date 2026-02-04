@@ -69,4 +69,20 @@ meter::-moz-meter-bar {
   background: var(--main-color);
 }
 
+@media (max-width: 800px) {
+    #resultsView meter {
+        width: 75px;
+        height: 1em;
+    }
+    #resultsView ul li {
+        grid-template-columns: 100px 1fr auto;
+    }
+    #resultsView, #voteView {
+        max-width: 200px; 
+    }
+    #voteView ul li {
+        grid-template-columns: 100px 1fr auto;
+    }
+
+}
 
