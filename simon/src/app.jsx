@@ -19,30 +19,28 @@ export default function App() {
           </div>
           <menu className="navbar-nav">
             <li className="nav-item">
-              <NavLink className="nav-link" href="index.html">
+              <NavLink className="nav-link" to="/">
                 Home
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" href="play.html">
+              <NavLink className="nav-link" to="play">
                 Play
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" href="scores.html">
+              <NavLink className="nav-link" to="scores">
                 Scores
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" href="about.html">
+              <NavLink className="nav-link" to="about">
                 About
               </NavLink>
             </li>
           </menu>
         </nav>
       </header>
-
-      <main>App components go here</main>
 
       <Routes>
       <Route path='/' element={<Login />} exact />
