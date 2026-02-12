@@ -96,12 +96,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Visually appealing colors and layout. No overflowing elements.** - I did not complete this part of the deliverable.
-- [ ] **Use of a CSS framework** - I did not complete this part of the deliverable.
-- [ ] **All visual elements styled using CSS** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing using flexbox and/or grid display** - I did not complete this part of the deliverable.
-- [ ] **Use of a imported font** - I did not complete this part of the deliverable.
-- [ ] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I did not complete this part of the deliverable.
+- [x] **Visually appealing colors and layout. No overflowing elements.** - It's not professionally designed, but it looks pretty good. I fixed the issues with overflow on the mobile version
+- [x] **Use of a CSS framework** - I used bootstrap to create buttons and overrode the color.
+- [x] **All visual elements styled using CSS** - All elements are in some way manipulated or styled with CSS
+- [x] **Responsive to window resizing using flexbox and/or grid display** - I used flex a lot and @media commands so it adapts on smaller screens
+- [x] **Use of a imported font** - The title is in a imported font call Eagle Lake
+- [x] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I used different types of selectors to access the elements I needed.
 
 ## 🚀 React part 1: Routing deliverable
 
