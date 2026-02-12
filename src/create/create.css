@@ -1,15 +1,15 @@
 
-main {
+.create-page main {
     justify-content: normal;
 }
 
-h2 {
+.create-page h2 {
     font-family: "Eagle Lake";
     text-decoration: underline;
     padding: 1em;
 }
 
-ul li {
+.create-page ul li {
     display: grid;
     list-style: none;
     padding: 0.3em;
@@ -18,27 +18,27 @@ ul li {
     margin-bottom: 1em;
 }
 
-textarea { width: 100%; 
+.create-page textarea { width: 100%; 
     padding: 0.4em; 
     box-sizing: border-box;
     border-color: var(--main-color);
     color:var(--main-color);
 }
 
-input::placeholder {
+.create-page input::placeholder {
     color: rgb(184, 185, 156);
 }
 
-input {
+.create-page input {
     border-color: var(--main-color);
     color: var(--main-color);
 }
 
-ol li {
+.create-page ol li {
     padding: 0.3em;
 }
 
-h3 {
+.create-page h3 {
     text-align: center;
     font-family: "Eagle Lake";
     padding-top: 0.5em;

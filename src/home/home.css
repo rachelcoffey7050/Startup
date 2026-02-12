@@ -1,17 +1,16 @@
-
-h2 {
+.home-page h2 {
     font-family: "Eagle Lake";
     text-decoration: underline;
 }
 
-article {
+.home-page article {
     border: thin solid var(--main-color);
     padding: 1em;
     width: 75%;
     box-shadow: 2px 2px 2px var(--accent-color);
 }
 
-article a {
+.home-page article a {
     color: var(--main-color);
     font-family: serif;
 }

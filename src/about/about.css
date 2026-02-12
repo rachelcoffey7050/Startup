@@ -1,17 +1,17 @@
-main {
+.about-page {
   background-image: url(books.jpg);
   background-size: cover; 
   background-repeat: no-repeat; 
   background-position: center;
 }
 
-main p {
+.about-page p {
   font-size: 1.2em;
   padding: 2em;
   color: var(--text-color);
 }
 
-section {
+.about-page section {
   background-color: var(--background-color);
   width: 75%;
   margin-top: 1em;

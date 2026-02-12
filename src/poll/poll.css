@@ -1,5 +1,4 @@
-
-h2{
+.poll-page h2{
     padding-top: 1em;
 }
 
@@ -11,7 +10,7 @@ h2{
     margin-bottom: 2em;
 }
 
-ul {
+.poll-page ul {
     display: flex;
     flex-direction: column;
     gap: 0.5em;
@@ -85,4 +84,3 @@ meter::-moz-meter-bar {
     }
 
 }
-

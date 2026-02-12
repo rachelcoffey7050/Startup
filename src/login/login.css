@@ -1,9 +1,9 @@
 
-main h1 {
+.login-page h1 {
     color: var(--main-color);
 }
 
-form {
+.login-page form {
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -13,6 +13,6 @@ form {
     margin-top: 3em;
 }
 
-main {
+.login-page {
     justify-content: center;
 }
