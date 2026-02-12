@@ -36,7 +36,7 @@ export default function App() {
     </Routes>
 
     <footer>
-      <span class="text-reset">Rachel Coffey</span>
+      <span className="text-reset">Rachel Coffey</span>
       <a href="https://github.com/rachelcoffey7050/Startup">Source</a>
     </footer>
     </div>
