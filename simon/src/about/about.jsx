@@ -1,11 +1,19 @@
 import React from 'react';
 import './about.css'
+import { getQuote } from './service';
 
 export function About() {
+  const [quote, setQuote] = React.useState({text: 'click to get quote', author: ''});
+  
+  function updateQuote() {
+    const quote = getQuote();
+    setQuote(quote);
+  }
+
   return (
-    <main class="container-fluid bg-secondary text-center">
+    <main className="container-fluid bg-secondary text-center">
       <div>
-        <div id="picture" class="picture-box"><img src="placeholder.jpg" alt="random" /></div>
+        <div id="picture" className="picture-box"><img src="placeholder.jpg" alt="random" /></div>
 
         <p>
           Simon is a repetitive memory game where you follow the demonstrated color sequence until you make a mistake.
@@ -17,9 +25,9 @@ export function About() {
           educational use only. No part of this code or program should be used outside of that definition.
         </p>
 
-        <div id="quote" class="quote-box bg-light text-dark">
-          <p class="quote">Words are cheap. Show me the code.</p>
-          <p class="author">Linus Torvalds</p>
+        <div id="quote" className="quote-box bg-light text-dark" onClick={updateQuote}>
+          <p className="quote">{quote.text}</p>
+          <p className="author">{quote.author}</p>
         </div>
       </div>
     </main>
