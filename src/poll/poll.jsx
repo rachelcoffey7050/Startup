@@ -1,5 +1,7 @@
 import React from 'react';
 import './poll.css'
+import { NavLink } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function Poll() {
   return (
@@ -20,7 +22,7 @@ export function Poll() {
                     </ul>
                     <div id="btnRow">
                     <button className="btn my-custom-btn" type="submit">Vote</button>
-                    <a href="poll.html" className="btn my-custom-btn">Next Poll</a>
+                    <NavLink className="btn my-custom-btn" to="/poll">Next Poll</NavLink>
                     </div>
                 </form>
                 
@@ -44,7 +46,7 @@ export function Poll() {
                 </ul>
             </fieldset>
             <div id="btnRow">
-            <a className="btn my-custom-btn" href="poll.html">Next Poll</a>
+            <NavLink className="btn my-custom-btn" to="/poll">Next Poll</NavLink>
             </div>
         </div>
     </main>
