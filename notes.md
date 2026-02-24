@@ -43,7 +43,12 @@ Making custom properties made a lot of things easier so if I want to change the 
 
 ## React Part 1: Routing
 
-Setting up Vite and React was pretty simple. I had a bit of trouble because of conflicting CSS. This isn't as straight forward as you would find with Svelte or Vue, but I made it work in the end. If there was a ton of CSS it would be a real problem. It sure was nice to have the code structured in a more usable way.
+This portion was frusterating! The simon part went smoothly, but I ran into problems when I tried it for myself. 
+The CSS I had written to apply to a specifc page became globally applied. It took me a while to understand that I had to switch every instance of _main_ to 
+a tag which I added to the main in each jsx file. Then, preface each section in the css file with that same tag so it would only apply to the page I wanted it to.
+
+There were a couple of confusing spots in the instructions where I wasn't sure which file I was supposed to be working in, but I think it turned out correct!
+It's a shame that with the new file structure, the background image takes a few minutes to load when I pull up the page.
 
 ## React Part 2: Reactivity
 

@@ -107,9 +107,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [x] **Bundled using Vite** - I did this part of the deliverable
+- [x] **Components** - My components are the app the the five page components: create, home, login, about, poll.
+- [x] **Router** - I set it up so four of the pages are routed in through the nav bar, and the poll page is navigated to from home's poll list.
 
 ## 🚀 React part 2: Reactivity deliverable
 

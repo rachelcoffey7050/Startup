@@ -177,3 +177,33 @@ It is asycronous, so the change happens out of your code. So by the end of your 
 
 At the next deliverable, you will only have one html page, all that html code goes into the jsx files. You will inject the page with the correct property into the html.
 vite will do what liveserver has been doing in the past.
+
+## Feb 19
+Browser rendering is single threaded. This means there is one thing going on and something finishes before it keeps going. 
+So if a process is still running, you won't be able to change it/start another.
+Forces people to write code that is very efficient. You need a way to execute big things off to the side, not in thread.
+
+A callback is put on the web API stack. It is only put on the call stack/single thread when the rest executes. Tagged with `setTimeout`
+Scheduling a timed event so that everything works responsivly. A Promise.
+
+### Promises
+'I promise that I will call you back when the work is done/has failed'. Promise is a javascript object. 
+
+```
+function callback(resolve) {
+  resolve('done');
+}
+const p = new Promise(callback);
+p.then((result => console.log(result));
+```
+Meaning: When the promise resolves I then want to call this function.
+
+fetch - callback funtion internally. `fetch('url').then((r) => console.log(r))`
+All the mechanics are inside the fetch function. Write promises using the fetch function.
+
+then, catch (error), finally (executes whether or not it works)
+
+### async/await
+await turns everything after it into a then block. 
+async. 
+You can use the same catch/finally with an await block. 
