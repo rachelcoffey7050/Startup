@@ -2,27 +2,37 @@ import React from 'react';
 import './poll.css'
 import { NavLink } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useParams } from "react-router-dom";
 
 export function Poll() {
-  return (
+  
+    const username = localStorage.getItem("username");
+    const {id} = useParams();
+
+    const polls = JSON.parse(localStorage.getItem("polls"));
+    const poll = polls[id]
+
+    if (!poll) {
+        return <p>poll not found</p>
+    }
+  
+    return (
     <main className='poll-page'>
         <div id="voteView">
-            <h2>Example Poll Title</h2>
-            <p>Description: Help me choose!</p>
+            <h2>{poll.title}</h2>
+            <p>{poll.description}</p>
             <fieldset>
                 <form id="voteForm" method="post">
                     <legend>Poll Options</legend>
                     <ul>
-                        <li><label for="radio1">option crazy</label>
-                        <input type="radio" id="radio1" name="varRadio" value="radio1" /></li>
-                        <li><label for="radio2">option funny</label>
-                        <input type="radio" id="radio2" name="varRadio" value="radio2" /></li>
-                        <li><label for="radio3">option thoughful</label>
-                        <input type="radio" id="radio3" name="varRadio" value="radio3" /></li>
+                        {poll.options.map((option, i) =>
+                        <li key={i}><label for="radio">{option}</label>
+                        <input type="radio" id="radio" name="varRadio" value="radio" /></li>
+                            )}
                     </ul>
                     <div id="btnRow">
                     <button className="btn my-custom-btn" type="submit">Vote</button>
-                    <NavLink className="btn my-custom-btn" to="/poll">Next Poll</NavLink>
+                    <NavLink className="btn my-custom-btn" to={`/poll/${id+1}`}>Next Poll</NavLink>
                     </div>
                 </form>
                 

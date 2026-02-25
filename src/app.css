@@ -39,7 +39,7 @@ menu {
 h1 {
   padding-top: 0.5em;
   text-align: center;
-  color: var(--background-color);
+  color: var(--light-background);
   font-family: "Eagle Lake", serif;
 }
 
