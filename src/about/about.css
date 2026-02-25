@@ -1,9 +1,3 @@
-.about-page {
-  background-image: url(/books.jpg);
-  background-size: cover; 
-  background-repeat: no-repeat; 
-  background-position: center;
-}
 
 .about-page p {
   font-size: 1.2em;

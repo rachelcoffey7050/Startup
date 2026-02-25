@@ -1,9 +1,25 @@
 import React from 'react';
 import './about.css';
+import { getImage } from './service';
 
 export function About() {
+  
+  const [image, setImageUrl] = React.useState('books.jpg')
+  
+
+  React.useEffect(() => {
+      const image = getImage();
+      setImageUrl(image);
+    }, []);
+
+
   return (
-    <main className='about-page'>
+    <main className='about-page' style={{backgroundImage: `url(${image})`,
+        backgroundSize: 'cover', 
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        }}
+        >
       <section>
         <p>
           StoryPolls is a platform for writers to create and share polls. Having trouble deciding between two character names? 
