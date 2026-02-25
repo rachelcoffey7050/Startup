@@ -8,7 +8,7 @@ export function Login() {
   const [password, setPassword] = React.useState('');
   function register(event){
       event.preventDefault();   
-      registerUser(email, password)
+      registerOrLoginUser(email, password)
       navigate("/");
     }
 
@@ -33,11 +33,16 @@ export function Login() {
   );
 }
 
-export function registerUser(email, password){
-  console.log(`Registering user with email: ${email} and password ${password}`)
+export function registerOrLoginUser(email, password){
+  console.log(`Logging in user with email: ${email} and password ${password}`)
 
   const users = JSON.parse(localStorage.getItem('users') || '[]');
 
-  users.push({email, password})
-  localStorage.setItem('users', JSON.stringify(users));
+  const existingUser = users.find(u => u.email === email && u.password === password);
+
+  if (!existingUser) {
+    users.push({email, password})
+    localStorage.setItem('users', JSON.stringify(users));
+  }
+  
 }
