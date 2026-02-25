@@ -2,29 +2,49 @@ import React from 'react';
 import './create.css'
 
 export function Create() {
+  const [title, setTitle] = React.useState('Unnamed');
+  const [description, setDescription] = React.useState('');
+  const [options, setOptions] = React.useState([]);
+  
+  function createPoll(event){
+    console.log(`poll with options ${options} created`)
+  }
+
+  function updateOption(index, newValue){
+    const updated = [...options];
+    updated[index] = newValue;
+    setOptions(updated);
+  }
+
+  function addOption() {
+    setOptions([...options, ""]);
+  }
+  
   return (
     <main className='create-page'>
         <h2>Create a Poll</h2>
         <p>The more polls there are, the more fun we'll have!</p>
         <form id="CreatePollForm" action="index.html" method="post">
             <ul>
-            <li><label for="tile">Poll title: </label>
-            <input type="text" id="title" placeholder="Question here"/></li>
+            <li><label>Poll title: </label>
+            <input type="text" id="title" placeholder="Question here" onChange={(e)=> setTitle(e.target.value)}/> </li>
             
-            <li><label for="description">Descritption/extra details: </label>
-            <textarea id="description"></textarea></li>
+            <li><label>Descritption/extra details: </label>
+            <textarea id="description" onChange={(e)=> setDescription(e.target.value)}></textarea> </li>
             </ul>
 
             <h3>Options</h3> 
             <div id="optionsContainer">
                 <ol>
-                <li><input type="text" name="option" placeholder="Option 1" required></input></li>
-                <li><input type="text" name="option" placeholder="Option 2" required></input></li>
+                <li><input type="text" name="option" placeholder="Option 1" 
+                  onChange={(e) => updateOption(0, e.target.value)} required></input></li>
+                <li><input type="text" name="option" placeholder="Option 2" 
+                onChange={(e) => updateOption(1, e.target.value)} required></input></li>
                 </ol> 
             </div> 
             <div id="btnRow">
-            <button class="btn my-custom-btn" type="button" id="addOptionBtn">Add another option</button> 
-            <button class="btn my-custom-btn" type="submit">Create Poll</button>
+            <button className="btn my-custom-btn" type="button" id="addOptionBtn" onClick={addOption}>Add another option</button> 
+            <button className="btn my-custom-btn" type="submit">Create Poll</button>
             </div>
         </form>
     </main>
