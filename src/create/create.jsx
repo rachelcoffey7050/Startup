@@ -44,10 +44,10 @@ export function Create({}) {
             <h3>Options</h3> 
             <div id="optionsContainer">
                 <ol>
-                <li><input type="text" name="option" placeholder="Option 1" 
-                  onChange={(e) => updateOption(0, e.target.value)} required></input></li>
-                <li><input type="text" name="option" placeholder="Option 2" 
-                onChange={(e) => updateOption(1, e.target.value)} required></input></li>
+                  {options.map((opt, index) => (
+                <li key={index}><input type="text" name="option" placeholder={`Option ${index+1}`} 
+                  onChange={(e) => updateOption(index, e.target.value)} required></input></li>
+                  ))}
                 </ol> 
             </div> 
             <div id="btnRow">

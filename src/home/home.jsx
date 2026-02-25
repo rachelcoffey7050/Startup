@@ -10,8 +10,8 @@ export function Home() {
     <main className='home-page'>
         <h2>Poll List</h2>
 
-        {pollList.map((poll, index) => (
-        <article className="a-poll">
+        {pollList.slice().reverse().map((poll, index) => (
+        <article key={index} className="a-poll">
             <h3><NavLink to="poll">{poll.title}</NavLink></h3>
             <p>{poll.description}</p>
             <p>Votes: <span id="voteCount">0</span></p>
