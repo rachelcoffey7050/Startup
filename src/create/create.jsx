@@ -1,13 +1,21 @@
 import React from 'react';
-import './create.css'
+import './create.css';
+import { useNavigate } from 'react-router-dom';
+
 
 export function Create() {
   const [title, setTitle] = React.useState('Unnamed');
   const [description, setDescription] = React.useState('');
-  const [options, setOptions] = React.useState([]);
+  const [options, setOptions] = React.useState(["1", "2"]);
+  const navigate = useNavigate();
   
   function createPoll(event){
+    event.preventDefault();
     console.log(`poll with options ${options} created`)
+    const polls = JSON.parse(localStorage.getItem('polls') || '[]');
+    polls.push({title, description, options})
+    localStorage.setItem('polls', JSON.stringify(polls));
+    navigate("/");
   }
 
   function updateOption(index, newValue){
@@ -24,7 +32,7 @@ export function Create() {
     <main className='create-page'>
         <h2>Create a Poll</h2>
         <p>The more polls there are, the more fun we'll have!</p>
-        <form id="CreatePollForm" action="index.html" method="post">
+        <form id="CreatePollForm" onSubmit={createPoll}>
             <ul>
             <li><label>Poll title: </label>
             <input type="text" id="title" placeholder="Question here" onChange={(e)=> setTitle(e.target.value)}/> </li>
