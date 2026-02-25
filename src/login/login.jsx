@@ -1,19 +1,23 @@
 import React from 'react';
 import './login.css';
+import { useNavigate } from 'react-router-dom';
 
 export function Login() {
-  
+  const navigate = useNavigate();
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   function register(event){
       event.preventDefault();   
       registerUser(email, password)
+      navigate("/");
     }
+
+  
   
   return (
     <main className='login-page'>
       <h1>Your StoryPolls Accout</h1>
-      <form onSubmit={register}>
+      <form onSubmit={register} >
         <div>
           <span>👤</span>
           <input type="text" placeholder="username" required onChange={(e)=> setEmail(e.target.value)}/>
