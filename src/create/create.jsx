@@ -3,9 +3,9 @@ import './create.css';
 import { useNavigate } from 'react-router-dom';
 
 
-export function Create({setPollList}) {
+export function Create({}) {
   const [title, setTitle] = React.useState('Unnamed');
-  const [description, setDescription] = React.useState('');
+  const [description, setDescription] = React.useState('description..');
   const [options, setOptions] = React.useState(["1", "2"]);
   const navigate = useNavigate();
   
@@ -15,7 +15,6 @@ export function Create({setPollList}) {
     const polls = JSON.parse(localStorage.getItem('polls') || '[]');
     polls.push({title, description, options})
     localStorage.setItem('polls', JSON.stringify(polls));
-    localStorage.setPollList(polls)
     navigate("/");
   }
 
