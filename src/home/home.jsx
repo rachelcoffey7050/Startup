@@ -10,10 +10,11 @@ export function Home() {
     <main className='home-page'>
         <h2>Poll List</h2>
 
-        {pollList.slice().reverse().map((poll, index) => (
+        {pollList.slice().reverse().slice(0,30).map((poll, index) => (
         <article key={index} className="a-poll">
             <h3><NavLink to="poll">{poll.title}</NavLink></h3>
-            <p>{poll.description}</p>
+            <p>{poll.description.length > 300 ? poll.description.slice(0,120) + "..." 
+                    : poll.description}</p>
             <p>Votes: <span id="voteCount">0</span></p>
         </article>
         ))}
