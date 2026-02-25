@@ -22,24 +22,43 @@ export function Poll() {
     const navigate = useNavigate()
     const username = localStorage.getItem("currentUser");
     const {id} = useParams();
+    const numID = parseInt(id)
 
-    const polls = JSON.parse(localStorage.getItem("polls"));
+    const polls = JSON.parse(localStorage.getItem("polls" || "[]"));
     const poll = polls[id]
 
     const [voted, setVoted] = React.useState(false);
 
-    function voting() {
-        setVoted(true);
+    const [voteCounts, setVoteCounts] = React.useState(poll.voteCounts || '[]');
+    if ((poll) && (!voteCounts || voteCounts.length !== poll.options.length)) {
+        const initial = Array(poll.options.length).fill(0);
+        setVoteCounts(initial);
+        localStorage.setItem('voteCounts', JSON.stringify(initial)); 
     }
 
-    if (!poll) {
+    const [selected, setSelected] = React.useState(null);
+
+    function voting(index) {
+        setVoted(true);
+        setVoteCounts(voteCounts.map((count, i) =>
+            i === index ? count+1 : count
+        ));
+    }
+
+    function leavePage() {
+        setVoted(false);
+    }
+
+     if (!poll) {
         return (
         <main className='poll-page'>
                 <p>poll not found</p>
         </main> )
     }
 
-    else if (!voted) {
+    
+
+    if (!voted) {
         return (<main className='poll-page'>
         <div id="voteView">
             <h2>{poll.title}</h2>
@@ -50,12 +69,12 @@ export function Poll() {
                     <ul>
                         {poll.options.map((option, i) =>
                         <li key={i}><label forhtml="radio">{option}</label>
-                        <input type="radio" name="varRadio" value="radio" /></li>
+                        <input type="radio" name="varRadio" value={i} onChange={() =>setSelected(i)} /></li>
                             )}
                     </ul>
                     <div id="btnRow">
-                    <button className="btn my-custom-btn" onClick={voting} >Vote</button>
-                    <NavLink className="btn my-custom-btn" to={`/poll/${id+1}`}>Next Poll</NavLink>
+                    <button className="btn my-custom-btn" onClick={() => voting(selected)} >Vote</button>
+                    <NavLink className="btn my-custom-btn" to={`/poll/${numID-1}`}>Next Poll</NavLink>
                     </div>
                 </form>
                 
@@ -87,12 +106,12 @@ export function Poll() {
                     <ul>
                         {poll.options.map((option, i) =>
                         <li key={i}><label forhtml="voteCount0">{option}</label>
-                        <meter id="votesMeter0" min="0" max="100" value="0" optimum="100" low="33"></meter><span id="voteCount0">0</span></li>
+                        <meter id="votesMeter0" min="0" max="100" value={voteCounts[i]} optimum="100" low="33"></meter><span id="voteCount0">{voteCounts[i]}</span></li>
                         )}
                     </ul>
                 </fieldset>
                 <div id="btnRow">
-                <NavLink className="btn my-custom-btn" to="/poll">Next Poll</NavLink>
+                <NavLink className="btn my-custom-btn" onClick={leavePage} to={`/poll/${numID-1}`}>Next Poll</NavLink>
                 </div>
             </div>
         </main>

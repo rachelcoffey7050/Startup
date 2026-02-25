@@ -7,13 +7,14 @@ export function Create({}) {
   const [title, setTitle] = React.useState('Unnamed');
   const [description, setDescription] = React.useState('description..');
   const [options, setOptions] = React.useState(["1", "2"]);
+  const [voteCount, setVoteCount] = React.useState(Array(options.length).fill(0))
   const navigate = useNavigate();
   
   function createPoll(event){
     event.preventDefault();
     console.log(`poll with options ${options} created`)
     const polls = JSON.parse(localStorage.getItem('polls') || '[]');
-    polls.push({title, description, options})
+    polls.push({title, description, options, voteCount})
     localStorage.setItem('polls', JSON.stringify(polls));
     navigate("/");
   }
