@@ -1,6 +1,7 @@
 .home-page h2 {
     font-family: "Eagle Lake";
     text-decoration: underline;
+    margin: .5em;
 }
 
 .home-page article {
@@ -8,6 +9,7 @@
     padding: 1em;
     width: 75%;
     box-shadow: 2px 2px 2px var(--accent-color);
+    margin: .25em;
 }
 
 .home-page article a {
