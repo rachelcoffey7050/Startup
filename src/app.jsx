@@ -9,7 +9,12 @@ import { About } from './about/about';
 import { Home } from './home/home';
 
 
+
+
 export default function App() {
+
+  const [currentUser, setCurrentUser] = React.useState(localStorage.getItem('currentUser') || '');
+
   return (
    <BrowserRouter>
    <div className="body">
@@ -20,7 +25,9 @@ export default function App() {
           <li className='nav-item'><NavLink to="/">Home</NavLink></li>
           <li className='nav-item'><NavLink to="about">About</NavLink></li>
           <li className='nav-item'><NavLink to="create">Create Poll</NavLink></li>
-          <li className='nav-item'><NavLink to="login">Log In/Sign Up</NavLink></li> 
+          <li className='nav-item'>{currentUser ? ( <NavLink to="login">{currentUser}</NavLink>):
+          (<NavLink to="login"> Log In/Sign Up</NavLink>)}</li>
+          
         </menu>
       </nav>
       <hr />
@@ -31,7 +38,7 @@ export default function App() {
     <Route path='/poll' element={<Poll />} />
     <Route path='/create' element={<Create />} />
     <Route path='/about' element={<About />} />
-    <Route path='/login' element={<Login />} />
+    <Route path='/login' element={<Login setCurrentUser={setCurrentUser} />} />
     <Route path='*' element={<NotFound />} />
     </Routes>
 

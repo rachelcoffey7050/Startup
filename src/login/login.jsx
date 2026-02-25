@@ -2,13 +2,15 @@ import React from 'react';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
 
-export function Login() {
+export function Login({ setCurrentUser }) {
   const navigate = useNavigate();
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   function register(event){
       event.preventDefault();   
       registerOrLoginUser(email, password)
+      localStorage.setItem("currentUser", email);
+      setCurrentUser(email);
       navigate("/");
     }
 
@@ -44,5 +46,4 @@ export function registerOrLoginUser(email, password){
     users.push({email, password})
     localStorage.setItem('users', JSON.stringify(users));
   }
-  
 }
