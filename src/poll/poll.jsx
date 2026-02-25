@@ -26,7 +26,11 @@ export function Poll() {
     const polls = JSON.parse(localStorage.getItem("polls"));
     const poll = polls[id]
 
-    const voted = false;
+    const [voted, setVoted] = React.useState(false);
+
+    function voting() {
+        setVoted(true);
+    }
 
     if (!poll) {
         return (
@@ -41,16 +45,16 @@ export function Poll() {
             <h2>{poll.title}</h2>
             <p>{poll.description}</p>
             <fieldset>
-                <form id="voteForm" method="post">
+                <form id="voteForm">
                     <legend>Poll Options</legend>
                     <ul>
                         {poll.options.map((option, i) =>
-                        <li key={i}><label for="radio">{option}</label>
-                        <input type="radio" id="radio" name="varRadio" value="radio" /></li>
+                        <li key={i}><label forhtml="radio">{option}</label>
+                        <input type="radio" name="varRadio" value="radio" /></li>
                             )}
                     </ul>
                     <div id="btnRow">
-                    <button className="btn my-custom-btn" type="submit">Vote</button>
+                    <button className="btn my-custom-btn" onClick={voting} >Vote</button>
                     <NavLink className="btn my-custom-btn" to={`/poll/${id+1}`}>Next Poll</NavLink>
                     </div>
                 </form>
@@ -73,20 +77,18 @@ export function Poll() {
             </main>)
     }
   
-    else if (voted) {return (
+    if (voted) {return (
         <main className='poll-page'>
-            <div id="resultsView" style={{display:'none'}}> 
-                <h2>Example Poll Title</h2>
-                <p>Description: Help me choose!</p>
+            <div id="resultsView"> 
+                <h2>{poll.title}</h2>
+                <p>{poll.description}</p>
                 <fieldset>
                     <legend>Poll Options</legend>
                     <ul>
-                        <li><label for="voteCount0">option crazy </label>
+                        {poll.options.map((option, i) =>
+                        <li key={i}><label forhtml="voteCount0">{option}</label>
                         <meter id="votesMeter0" min="0" max="100" value="0" optimum="100" low="33"></meter><span id="voteCount0">0</span></li>
-                        <li><label for="voteCount1">option funny </label>
-                        <meter id="votesMeter1" min="0" max="100" value="0" optimum="100" low="33"></meter> <span id="voteCount1">0</span></li>
-                        <li><label for="voteCount2">option thoughful </label>
-                        <meter id="votesMeter2" min="0" max="100" value="0" optimum="100" low="33"></meter> <span id="voteCount2">0</span></li>
+                        )}
                     </ul>
                 </fieldset>
                 <div id="btnRow">
