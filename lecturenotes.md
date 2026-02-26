@@ -207,3 +207,34 @@ then, catch (error), finally (executes whether or not it works)
 await turns everything after it into a then block. 
 async. 
 You can use the same catch/finally with an await block. 
+
+## Feb 26 - web services
+
+Node.js - making it secure because nothing is sercure on the front end, only the back end.
+
+Service Design - be intentional about creating the right functionality of the service.
+- create (post), read (get), delete, update (put)
+Service endpoints: simon. create account, login, logout, get user, get scores, save scores.
+
+express - useful javascript functions for web services on npm. 
+
+Web service: 
+```
+const express = require('express');      //import express code
+const app = express();                   // create express app
+
+app.get(/.*/, (req, res) => {            // define endpoint          
+ res.send('<h1>Hello Express!</h1>');    // send a response
+});
+
+app.listen(3000);                        // start listening on network - only works if freee
+```
+Node is py of the javascript world - use it to run
+
+res.send, .status, .listen, .redirect, 
+
+use // for regular expressions.
+
+app.use(express.static('public)); - use public directory (images)
+
+Your backend will be hosting up the front end code - static file hosting.
