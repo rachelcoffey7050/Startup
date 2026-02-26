@@ -115,8 +115,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - all functionality implemented or mocked out. Specifically, I will still need to save to the server instead of local storage and get the image from outside, not from the saved images.
+- [x] **Hooks** - `useState` is all over the place and `useEffect` is in there too.
 
 ## 🚀 Service deliverable
 
