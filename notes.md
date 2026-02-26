@@ -52,26 +52,65 @@ It's a shame that with the new file structure, the background image takes a few 
 
 ## React Part 2: Reactivity
 
-This was a lot of fun to see it all come together. I had to keep remembering to use React state instead of just manipulating the DOM directly.
+It took me a while to get the simon portion working, and then I had to work on my own startup.
+lHonestly, I came into this assignment feeling like I still understood nothing about react or javascript, so it was a steep learning curve.
+Working on it is the best way to learn. 
+By the end, I felt like I had a good grasp on when to use a `react.useState`, when to call local storage, and how to write functions in javascript.
+It is not as complicated as it could be, but I'm proud of how it turned out.
 
-Handling the toggling of the checkboxes was particularly interesting.
+### Cheat sheet: How to update a state variable
+In React, you **never update a `const` directly** — even if it *looks* like a variable.  
+When you write:
 
-```jsx
-<div className="input-group sound-button-container">
-  {calmSoundTypes.map((sound, index) => (
-    <div key={index} className="form-check form-switch">
-      <input
-        className="form-check-input"
-        type="checkbox"
-        value={sound}
-        id={sound}
-        onChange={() => togglePlay(sound)}
-        checked={selectedSounds.includes(sound)}
-      ></input>
-      <label className="form-check-label" htmlFor={sound}>
-        {sound}
-      </label>
-    </div>
-  ))}
-</div>
+```js
+const [value, setValue] = React.useState(initialValue);
+```
+
+`value` is **read‑only**.  
+The *only* correct way to update it is by calling the setter function (`setValue`).
+
+If you have:
+```js
+const [count, setCount] = React.useState(0);
+```
+
+You update it like this:
+```js
+setCount(count + 1);
+```
+
+or, if the new value depends on the old one:
+```js
+setCount(prev => prev + 1);
+```
+If you have:
+```js
+const [options, setOptions] = React.useState(["A", "B"]);
+```
+
+Add an item:
+```js
+setOptions([...options, ""]);
+```
+
+Update an item:
+```js
+setOptions(options.map((opt, i) =>
+  i === index ? newValue : opt
+));
+```
+
+Remove an item:
+```js
+setOptions(options.filter((_, i) => i !== index));
+```
+
+If you have:
+```js
+const [poll, setPoll] = React.useState({ title: "", description: "" });
+```
+
+Update one field:
+```js
+setPoll({ ...poll, title: "New Title" });
 ```
