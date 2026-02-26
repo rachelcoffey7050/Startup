@@ -33,17 +33,24 @@ export function Poll() {
     if ((poll) && (!voteCounts || voteCounts.length !== poll.options.length)) {
         const initial = Array(poll.options.length).fill(0);
         setVoteCounts(initial);
-        localStorage.setItem('voteCounts', JSON.stringify(initial)); 
+        localStorage.setItem('poll.voteCounts', JSON.stringify(initial)); 
     }
 
     const [selected, setSelected] = React.useState(null);
 
     function voting(index) {
         setVoted(true);
-        setVoteCounts(voteCounts.map((count, i) =>
-            i === index ? count+1 : count
-        ));
-    }
+        const updatedCounts = voteCounts.map((count, i) =>
+            i === index ? count + 1 : count
+        );
+        setVoteCounts(updatedCounts);
+        poll.voteCounts = updatedCounts;
+        const updatedPolls = polls.map((p, i) =>
+            i === numID ? { ...p, voteCounts: updatedCounts } : p
+        );
+        localStorage.setItem("polls", JSON.stringify(updatedPolls));
+        }
+
 
     function leavePage() {
         setVoted(false);
