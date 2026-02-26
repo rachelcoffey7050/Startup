@@ -54,9 +54,11 @@ It's a shame that with the new file structure, the background image takes a few 
 
 It took me a while to get the simon portion working, and then I had to work on my own startup.
 lHonestly, I came into this assignment feeling like I still understood nothing about react or javascript, so it was a steep learning curve.
-Working on it is the best way to learn.
+Working on it is the best way to learn. 
+By the end, I felt like I had a good grasp on when to use a `react.useState`, when to call local storage, and how to write functions in javascript.
+It is not as complicated as it could be, but I'm proud of how it turned out.
 
-### How to uodate a state variable
+### Cheat sheet: How to update a state variable
 In React, you **never update a `const` directly** — even if it *looks* like a variable.  
 When you write:
 
