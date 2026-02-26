@@ -20,7 +20,6 @@ export function Home() {
             <h3><NavLink to={`/poll/${findRealIndex(index)}`}>{poll.title}</NavLink></h3>
             <p>{poll.description.length > 300 ? poll.description.slice(0,120) + "..." 
                     : poll.description}</p>
-            <p>Votes: <span id="voteCount">0</span></p>
         </article>
         ))}
         
