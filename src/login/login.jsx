@@ -14,8 +14,16 @@ export function Login({ setCurrentUser }) {
       navigate("/");
     }
 
+  function logout(){
+    localStorage.removeItem("currentUser");
+    setCurrentUser(null)
+    setEmail('')
+    navigate("/");
+
+  }
+
   
-  
+  if (!localStorage.getItem("currentUser")){
   return (
     <main className='login-page'>
       <h1>Your StoryPolls Accout</h1>
@@ -31,6 +39,13 @@ export function Login({ setCurrentUser }) {
         <button className="btn my-custom-btn" type="submit">Login</button>
         <button className="btn my-custom-btn" type="submit">Create</button>
       </form>
+    </main>
+  );}
+
+  return (
+    <main className='login-page'>
+      <h1>Your StoryPolls Accout</h1>
+      <button className="btn my-custom-btn" onClick={logout}>Logout</button>
     </main>
   );
 }
