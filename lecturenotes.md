@@ -238,3 +238,22 @@ use // for regular expressions.
 app.use(express.static('public)); - use public directory (images)
 
 Your backend will be hosting up the front end code - static file hosting.
+
+## March 3
+
+### Securely storing passwords:
+They are trusting you. Handle that in the most secure way. 
+Encrypt it so even you can't see their password. 
+- salt - unique number that makes it so if you have the same password your hash is still unique
+- hash - and scrambled eggs
+- compare
+Using the bcrypt software in your backend service. `bcrypt.hash()`
+
+### uuid and cookies
+you get a new uuid every time. this is the authToken which shows you are authenticated.
+
+how to pass you authToken securely.
+`Set-Cookie: token=x83yzi; Secure; HttpOnly; SameSite=Strict`
+What is this doing is that if you are on https, and on the site, on the next request it will give the cookie (token=x83yzi)
+
+
