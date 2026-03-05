@@ -256,4 +256,26 @@ how to pass you authToken securely.
 `Set-Cookie: token=x83yzi; Secure; HttpOnly; SameSite=Strict`
 What is this doing is that if you are on https, and on the site, on the next request it will give the cookie (token=x83yzi)
 
+cookies are so it can persist without being accessable to the client.
 
+## March 5 - Storage services
+
+No requirement for this, but it might be necessary for your application.
+
+Security must all be on the back end. You can override things on the front end but it won't affect things on the back end.
+
+care about customer in the future - features or threats your customer didn't think about on initial request. Also need to think about future developers.
+
+### deployment
+Induvidual dev environment -> testing analysis, integrate to entire team -> version repository, artifact of what you intend to deploy 
+-> production environment (customers), sales environment (private external), next version dummy data (private internal).
+
+If you deploy right as someone was saving something, it will delete all their data. 
+
+Two applications in the root - front end and back end. So you need to use correct file structure.
+
+### storage
+uploading files - such as an image, video, etc. 
+npm install express multer. 
+probably won't need this but can look back at the instructions.
+This isn't how you'd do it in real life, you could instead call a storage service like AWS S3. Have to pay for that - it adds up pretty quickly. 
