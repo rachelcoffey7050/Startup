@@ -239,6 +239,8 @@ app.use(express.static('public)); - use public directory (images)
 
 Your backend will be hosting up the front end code - static file hosting.
 
+# Back end
+
 ## March 3
 
 ### Securely storing passwords:
@@ -279,3 +281,9 @@ uploading files - such as an image, video, etc.
 npm install express multer. 
 probably won't need this but can look back at the instructions.
 This isn't how you'd do it in real life, you could instead call a storage service like AWS S3. Have to pay for that - it adds up pretty quickly. 
+
+## March 10 - Data services
+Data needs to be stored in the DB not the server. Database is 2nd to last deliverable.
+
+Specific databases like influxDB were created to be efficient for specific use.
+MongoDB makes it easy for developers using JSON objects - collection of schema free JSON. Doesn't optimize performance, optimizes ease of use.
