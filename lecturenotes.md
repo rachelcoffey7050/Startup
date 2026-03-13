@@ -287,3 +287,9 @@ Data needs to be stored in the DB not the server. Database is 2nd to last delive
 
 Specific databases like influxDB were created to be efficient for specific use.
 MongoDB makes it easy for developers using JSON objects - collection of schema free JSON. Doesn't optimize performance, optimizes ease of use.
+
+## March 12
+Debugging for the service/database deliverable
+- set a break point
+- front end: npm run dev and push o
+- you can debug both the front end and back end at the same time by running them at the same time. Start each induvidually.
