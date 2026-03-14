@@ -207,3 +207,89 @@ then, catch (error), finally (executes whether or not it works)
 await turns everything after it into a then block. 
 async. 
 You can use the same catch/finally with an await block. 
+
+## Feb 26 - web services
+
+Node.js - making it secure because nothing is sercure on the front end, only the back end.
+
+Service Design - be intentional about creating the right functionality of the service.
+- create (post), read (get), delete, update (put)
+Service endpoints: simon. create account, login, logout, get user, get scores, save scores.
+
+express - useful javascript functions for web services on npm. 
+
+Web service: 
+```
+const express = require('express');      //import express code
+const app = express();                   // create express app
+
+app.get(/.*/, (req, res) => {            // define endpoint          
+ res.send('<h1>Hello Express!</h1>');    // send a response
+});
+
+app.listen(3000);                        // start listening on network - only works if freee
+```
+Node is py of the javascript world - use it to run
+
+res.send, .status, .listen, .redirect, 
+
+use // for regular expressions.
+
+app.use(express.static('public)); - use public directory (images)
+
+Your backend will be hosting up the front end code - static file hosting.
+
+# Back end
+
+## March 3
+
+### Securely storing passwords:
+They are trusting you. Handle that in the most secure way. 
+Encrypt it so even you can't see their password. 
+- salt - unique number that makes it so if you have the same password your hash is still unique
+- hash - and scrambled eggs
+- compare
+Using the bcrypt software in your backend service. `bcrypt.hash()`
+
+### uuid and cookies
+you get a new uuid every time. this is the authToken which shows you are authenticated.
+
+how to pass you authToken securely.
+`Set-Cookie: token=x83yzi; Secure; HttpOnly; SameSite=Strict`
+What is this doing is that if you are on https, and on the site, on the next request it will give the cookie (token=x83yzi)
+
+cookies are so it can persist without being accessable to the client.
+
+## March 5 - Storage services
+
+No requirement for this, but it might be necessary for your application.
+
+Security must all be on the back end. You can override things on the front end but it won't affect things on the back end.
+
+care about customer in the future - features or threats your customer didn't think about on initial request. Also need to think about future developers.
+
+### deployment
+Induvidual dev environment -> testing analysis, integrate to entire team -> version repository, artifact of what you intend to deploy 
+-> production environment (customers), sales environment (private external), next version dummy data (private internal).
+
+If you deploy right as someone was saving something, it will delete all their data. 
+
+Two applications in the root - front end and back end. So you need to use correct file structure.
+
+### storage
+uploading files - such as an image, video, etc. 
+npm install express multer. 
+probably won't need this but can look back at the instructions.
+This isn't how you'd do it in real life, you could instead call a storage service like AWS S3. Have to pay for that - it adds up pretty quickly. 
+
+## March 10 - Data services
+Data needs to be stored in the DB not the server. Database is 2nd to last deliverable.
+
+Specific databases like influxDB were created to be efficient for specific use.
+MongoDB makes it easy for developers using JSON objects - collection of schema free JSON. Doesn't optimize performance, optimizes ease of use.
+
+## March 12
+Debugging for the service/database deliverable
+- set a break point
+- front end: npm run dev and push o
+- you can debug both the front end and back end at the same time by running them at the same time. Start each induvidually.
