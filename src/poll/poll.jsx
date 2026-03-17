@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { getPoll } from './service';
+import { updatePoll } from './service';
 import { useEffect } from 'react';
 
 
@@ -40,18 +41,22 @@ export function Poll() {
 
     const [selected, setSelected] = React.useState(null);
 
-    function voting(index) {
+    async function voting(index) {
         setVoted(true);
         const updatedCounts = voteCounts.map((count, i) =>
             i === index ? count + 1 : count
         );
         setVoteCounts(updatedCounts);
         //poll.voteCounts = updatedCounts;
-        const updatedPolls = polls.map((p, i) =>
-            i === numID ? { ...p, voteCounts: updatedCounts } : p
-        );
-        localStorage.setItem("polls", JSON.stringify(updatedPolls));
-        
+        const updatedPoll = {
+            ...poll,
+            voteCounts: updatedCounts,
+        };
+        try {
+            await updatePoll(poll.id, updatedPoll);
+        } catch (err) {
+            console.error("Failed to update poll", err);
+        }
     }
 
 
