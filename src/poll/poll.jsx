@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import { getPoll } from './service';
+import { useEffect } from 'react';
 
 
 export function Poll() {
@@ -11,10 +13,16 @@ export function Poll() {
     const navigate = useNavigate()
     const username = localStorage.getItem("currentUser");
     const {id} = useParams();
-    const numID = parseInt(id)
+    const numID = parseInt(id);
+    const [poll, setPoll] = React.useState(null);
 
-    const polls = JSON.parse(localStorage.getItem("polls" || "[]"));
-    const poll = polls[id]
+    useEffect(() => {
+    getPoll(id).then(setPoll);
+    }, [id]);
+
+    if (!poll) {
+    return <main className="poll-page">Poll does not exist</main>;
+    }
 
     const [voted, setVoted] = React.useState(false);
 
