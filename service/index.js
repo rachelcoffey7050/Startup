@@ -108,6 +108,19 @@ apiRouter.get("/polls/:id", async (req, res) => {
   res.send(polls[index])
 })
 
+apiRouter.put("/polls/:id", async (req, res) => {
+  const id = req.params.id;
+  const index = polls.findIndex(p => p.id === id);
+  if (index === -1) {
+    res.status(404).send({ msg: 'Poll not found' });
+    return;
+  }
+  const poll = polls[index];
+  poll.votes = req.params.votes;
+  polls[index] = poll;
+  res.send(polls[index]);
+})
+
 // Default error handler
 app.use(function (err, req, res, next) {
   res.status(500).send({ type: err.name, message: err.message });
