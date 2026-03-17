@@ -8,9 +8,13 @@ export function About() {
   
 
   React.useEffect(() => {
-      const image = getImage();
-      setImageUrl(image);
-    }, []);
+    async function load() {
+    const url = await getImage();
+    console.log("Outside function:", url);
+    setImageUrl(url);
+  }
+  load();
+}, []);
 
 
   return (

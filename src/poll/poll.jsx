@@ -6,17 +6,6 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
 
-// to do: make a function for what happens when vote is pressed. 
-// Include in this changing the style to hide the first and show the second
-// don't forget to update the home page to show the vote count - may need to update create poll as well
-// also fix next poll button
-//{showResults ? (
-//   <ResultsView />
-// ) : (
-//   <VoteView />
-// )}
-
-
 export function Poll() {
     
     const navigate = useNavigate()
