@@ -19,8 +19,7 @@ export function Login({ setCurrentUser }) {
     setCurrentUser(null)
     setEmail('')
     navigate("/");
-
-  }
+  } 
 
   
   if (!localStorage.getItem("currentUser")){
@@ -50,15 +49,33 @@ export function Login({ setCurrentUser }) {
   );
 }
 
-export function registerOrLoginUser(email, password){
-  console.log(`Logging in user with email: ${email} and password ${password}`)
+export async function registerOrLoginUser(email, password){
+  
+  const response = await fetch('/api/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password }),
+  });
 
-  const users = JSON.parse(localStorage.getItem('users') || '[]');
-
-  const existingUser = users.find(u => u.email === email && u.password === password);
-
-  if (!existingUser) {
-    users.push({email, password})
-    localStorage.setItem('users', JSON.stringify(users));
+  if (response.ok) {
+    return
   }
+
+  if (response.status === 401) {
+    response = await fetch('/api/auth/create', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (response.ok) {
+      return;
+    }
+
+    if (response.status === 409) {
+      alert("Incorrect Password for Existing User");
+      return;
+  }
+   alert("Unable to login or create user");
+}
 }
