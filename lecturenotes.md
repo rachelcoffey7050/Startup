@@ -293,3 +293,20 @@ Debugging for the service/database deliverable
 - set a break point
 - front end: npm run dev and push o
 - you can debug both the front end and back end at the same time by running them at the same time. Start each induvidually.
+
+## March 17 - testing
+AI can't frame the problem for you. 
+AI can't totally debug for you, since it will give you garbage. 
+AI can write tests, but only if you understand the testing model.
+AI can code for you so you don't have to remember syntax. It's gotten really good at this and fast.
+
+We still have testing and websocket.
+
+Write tests for service.js to make sure it is working. 
+Testing framework - Jest. Best for javascript testing.
+Write your code to be modular so you can test it from outside the code - Make a index.js file that `const app = require('./service');`
+Jest will show you the test coverage so you know that you are testing all your code.
+
+Commit things that work.
+
+Front end testing - Playwrite. Allows you to take over the browswer. Works well with VS code and AI.
