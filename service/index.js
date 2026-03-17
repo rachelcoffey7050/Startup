@@ -11,7 +11,7 @@ let users = [];
 let scores = [];
 
 // The service port may be set on the command line
-const port = process.argv.length > 2 ? process.argv[2] : 3000;
+const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 // JSON body parsing using built-in middleware
 app.use(express.json());
@@ -79,9 +79,23 @@ apiRouter.get('/polls', async (req, res) => {
   res.send(polls);
 });
 
-apiRouter.post('/poll', async (req, res) => {
-  const poll = await updatePolls(req.body);
-  res.send(poll);
+apiRouter.post('/polls', async (req, res) => {
+  const newPoll = req.body;
+  polls.push(newPoll);
+  res.send(newPoll);
+});
+
+apiRouter.delete('/polls/:id', verifyAuth, async (req, res) => {
+  const id = req.params.id;
+  const index = polls.findIndex(p => p.id === id);
+
+  if (index === -1) {
+    res.status(404).send({ msg: 'Poll not found' });
+    return;
+  }
+
+  polls.splice(index, 1);
+  res.status(204).end();
 });
 
 // Default error handler
@@ -93,26 +107,6 @@ app.use(function (err, req, res, next) {
 app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
-
-// updateScores considers a new score for inclusion in the high scores.
-async function updatePolls(newPoll) {
-  //await DB.addScore(newScore);
-  //return DB.getHighScores();
-  let found = false;
-  // for (const [i, prevScore] of scores.entries()) {
-  //   if (newScore.score > prevScore.score) {
-  //     scores.splice(i, 0, newScore);
-  //     found = true;
-  //     break;
-  //   }
-  // }
-
-  if (!found) {
-    polls.push(newPoll);
-  }
-
-  return polls;
-}
 
 async function createUser(email, password) {
   const passwordHash = await bcrypt.hash(password, 10);
@@ -136,6 +130,16 @@ async function findUser(field, value) {
   // }
   // return DB.getUser(value);
   return users.find((u) => u[field] === value);
+}
+
+async function findPoll(field, value) {
+  if (!value) return null;
+
+  // if (field === 'token') {
+  //   return DB.getUserByToken(value);
+  // }
+  // return DB.getUser(value);
+  return polls.find((u) => u[field] === value);
 }
 
 // setAuthCookie in the HTTP response
