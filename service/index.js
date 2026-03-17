@@ -98,6 +98,16 @@ apiRouter.delete('/polls/:id', verifyAuth, async (req, res) => {
   res.status(204).end();
 });
 
+apiRouter.get("/polls/:id", async (req, res) => {
+  const id = req.params.id;
+  const index = polls.findIndex(p => p.id === id);
+  if (index === -1) {
+    res.status(404).send({ msg: 'Poll not found' });
+    return;
+  }
+  res.send(polls[index])
+})
+
 // Default error handler
 app.use(function (err, req, res, next) {
   res.status(500).send({ type: err.name, message: err.message });
@@ -130,16 +140,6 @@ async function findUser(field, value) {
   // }
   // return DB.getUser(value);
   return users.find((u) => u[field] === value);
-}
-
-async function findPoll(field, value) {
-  if (!value) return null;
-
-  // if (field === 'token') {
-  //   return DB.getUserByToken(value);
-  // }
-  // return DB.getUser(value);
-  return polls.find((u) => u[field] === value);
 }
 
 // setAuthCookie in the HTTP response
