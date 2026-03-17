@@ -115,10 +115,13 @@ apiRouter.put("/polls/:id", async (req, res) => {
     res.status(404).send({ msg: 'Poll not found' });
     return;
   }
-  const poll = polls[index];
-  poll.votes = req.params.votes;
-  polls[index] = poll;
-  res.send(polls[index]);
+  const updated = {
+    ...polls[index],
+    ...req.body,
+  };
+
+  polls[index] = updated;
+  res.send(updated);
 })
 
 // Default error handler
