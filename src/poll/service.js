@@ -1,6 +1,6 @@
 
 export async function getPoll(id) {
-    const response = await fetch(`/api/polls/${id}`, {
+    let response = await fetch(`/api/polls/${id}`, {
     method: 'GET',
   });
   if (!response.ok) {
@@ -10,7 +10,7 @@ export async function getPoll(id) {
 }
 
 export async function updatePoll(id, updatedPoll) {
-    const response = await fetch(`/api/polls/${id}`, {
+    let response = await fetch(`/api/polls/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(updatedPoll),

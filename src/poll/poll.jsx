@@ -4,9 +4,7 @@ import { NavLink } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-import { getPoll } from './service';
 import { updatePoll } from './service';
-import { useEffect } from 'react';
 
 
 export function Poll() {
@@ -17,22 +15,25 @@ export function Poll() {
     const numID = parseInt(id);
     const [poll, setPoll] = React.useState(null);
 
-    useEffect(() => {
-    getPoll(id).then(setPoll);
-    }, [id]);
-
-    if (!poll) {
-    return <main className="poll-page">Poll does not exist</main>;
-    }
+    React.useEffect(() => {
+        fetch(`/api/polls/${id}`)
+          .then((response) => response.json())
+          .then((poll) => {
+            setPoll(poll);
+          });
+        }, [id]);
 
     const [voted, setVoted] = React.useState(false);
 
-    const [voteCounts, setVoteCounts] = React.useState(() => {
-        return Array.isArray(poll.voteCounts) &&
+    const [voteCounts, setVoteCounts] = React.useState([]);
+
+    React.useEffect(() => {
+    if (poll) {
+        setVoteCounts(Array.isArray(poll.voteCounts) &&
          poll.voteCounts.length === poll.options.length
         ? poll.voteCounts
-        : Array(poll.options.length).fill(0);
-    });
+        : Array(poll.options.length).fill(0))
+    }})
 
     const [totalCounts, setTotalCounts] = React.useState(0);
     React.useEffect(() => { 
@@ -41,7 +42,7 @@ export function Poll() {
 
     const [selected, setSelected] = React.useState(null);
 
-    async function voting(index) {
+    function voting(index) {
         setVoted(true);
         const updatedCounts = voteCounts.map((count, i) =>
             i === index ? count + 1 : count
@@ -52,23 +53,21 @@ export function Poll() {
             ...poll,
             voteCounts: updatedCounts,
         };
-        try {
-            await updatePoll(poll.id, updatedPoll);
-        } catch (err) {
-            console.error("Failed to update poll", err);
+        fetch('/api/polls/${id}', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updatePoll),
+            })
+            .then((response) => response.json())
         } 
-    }
 
 
     function leavePage() {
         setVoted(false);
     }
 
-     if (!poll) {
-        return (
-        <main className='poll-page'>
-                <p>poll not found</p>
-        </main> )
+    if (!poll) {
+    return <p>Loading...</p>;
     }
 
     

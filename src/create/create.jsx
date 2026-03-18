@@ -13,10 +13,12 @@ export function Create({}) {
   
   async function createPoll(event){
     event.preventDefault();
-    try { await createNewPoll( {title, description, options, voteCounts});
-          } catch (err) {
-              console.error("Failed to update poll", err);
-          }
+        fetch('/api/polls', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({title, description, options, voteCounts}),
+          })
+          .then((response) => response.json())
     console.log(`poll with options ${options} created`)
     navigate("/");
   }

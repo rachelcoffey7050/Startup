@@ -54,22 +54,24 @@ export function Login({ setCurrentUser }) {
 
 export async function registerOrLoginUser(email, password){
   
-  const response = await fetch('/api/auth/login', {
+    fetch('/api/auth/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
-  });
+  })
+  .then((response) => response.json())
 
   if (response.ok) {
     return
   }
 
   if (response.status === 401) {
-    response = await fetch('/api/auth/create', {
+      fetch('/api/auth/create', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
-    });
+    })
+    .then((response) => response.json())
 
     if (response.ok) {
       return;
