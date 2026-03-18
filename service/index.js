@@ -1,3 +1,4 @@
+
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const express = require('express');
@@ -8,7 +9,7 @@ const app = express();
 const authCookieName = 'token';
 
 let users = [];
-let scores = [];
+let polls = [];
 
 // The service port may be set on the command line
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -87,7 +88,8 @@ apiRouter.post('/polls', async (req, res) => {
   
   const newPoll = {
     id: uuid.v4(),
-    question,
+    title,
+    description,
     options,
     voteCounts: voteCount || Array(options.length).fill(0),
   };
