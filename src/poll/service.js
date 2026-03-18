@@ -9,12 +9,13 @@ export async function getPoll(id) {
   return await response.json();
 }
 
-export async function updatePoll(id, updatePoll) {
+export async function updatePoll(id, updatedPoll) {
     const response = await fetch(`/api/polls/${id}`, {
     method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(updatedPoll),
   });
-  if (!response.ok) {
+  if (!response.ok) { 
     throw new Error(`Failed to update poll ${id}`);
   }
   return await response.json();

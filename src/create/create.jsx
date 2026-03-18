@@ -1,6 +1,7 @@
 import React from 'react';
 import './create.css';
 import { useNavigate } from 'react-router-dom';
+import { createNewPoll } from './service';
 
 
 export function Create({}) {
@@ -10,12 +11,13 @@ export function Create({}) {
   const [voteCount, setVoteCount] = React.useState(Array(options.length).fill(0))
   const navigate = useNavigate();
   
-  function createPoll(event){
+  async function createPoll(event){
     event.preventDefault();
+    try { await createNewPoll( {title, description, options, voteCount});
+          } catch (err) {
+              console.error("Failed to update poll", err);
+          }
     console.log(`poll with options ${options} created`)
-    const polls = JSON.parse(localStorage.getItem('polls') || '[]');
-    polls.push({title, description, options, voteCount})
-    localStorage.setItem('polls', JSON.stringify(polls));
     navigate("/");
   }
 

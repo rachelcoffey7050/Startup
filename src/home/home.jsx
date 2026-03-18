@@ -1,10 +1,16 @@
 import React from 'react';
 import './home.css';
 import { NavLink } from 'react-router-dom';
+import { getPolls } from './service';
 
-export function Home() {
+export async function Home() {
   
-    const [pollList, setPollList] = React.useState(JSON.parse(localStorage.getItem('polls') || '[]'));
+    try { pollList = await getPolls();
+              } catch (err) {
+                  console.error("Failed to get pollList", err);
+              }
+
+    // const [pollList, setPollList] = React.useState(JSON.parse(localStorage.getItem('polls') || '[]'));
     
     function findRealIndex(index) {
         return pollList.length - 1 - index;

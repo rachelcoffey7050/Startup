@@ -14,7 +14,10 @@ export function Login({ setCurrentUser }) {
       navigate("/");
     }
 
-  function logout(){
+  async function logout(){
+    response = await fetch('/api/auth/logout', {
+      method: 'DELETE',
+    });
     localStorage.removeItem("currentUser");
     setCurrentUser(null)
     setEmail('')

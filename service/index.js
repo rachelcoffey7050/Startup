@@ -80,7 +80,17 @@ apiRouter.get('/polls', async (req, res) => {
 });
 
 apiRouter.post('/polls', async (req, res) => {
-  const newPoll = req.body;
+  const { title, description, options, voteCount } = req.body;
+  if (!title|| !options || !Array.isArray(options)) {
+    return res.status(400).send({ msg: "Invalid poll data" });
+  }
+  
+  const newPoll = {
+    id: uuid.v4(),
+    question,
+    options,
+    voteCounts: voteCount || Array(options.length).fill(0),
+  };
   polls.push(newPoll);
   res.send(newPoll);
 });

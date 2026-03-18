@@ -56,7 +56,7 @@ export function Poll() {
             await updatePoll(poll.id, updatedPoll);
         } catch (err) {
             console.error("Failed to update poll", err);
-        }
+        } 
     }
 
 
