@@ -8,12 +8,12 @@ export function Create({}) {
   const [title, setTitle] = React.useState('Unnamed');
   const [description, setDescription] = React.useState('description..');
   const [options, setOptions] = React.useState(["1", "2"]);
-  const [voteCount, setVoteCount] = React.useState(Array(options.length).fill(0))
+  const [voteCounts, setVoteCounts] = React.useState(Array(options.length).fill(0))
   const navigate = useNavigate();
   
   async function createPoll(event){
     event.preventDefault();
-    try { await createNewPoll( {title, description, options, voteCount});
+    try { await createNewPoll( {title, description, options, voteCounts});
           } catch (err) {
               console.error("Failed to update poll", err);
           }
