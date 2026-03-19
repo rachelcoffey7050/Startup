@@ -131,12 +131,16 @@ export function Poll() {
         {username === "rachelcoffey" && (
             <button
                 className="btn delete-btn"
-                onClick={() => {
-                fetch(`/api/polls/${id}`, {
+                onClick={async() => {
+                const res = await fetch(`/api/polls/${id}`, {
                     method: 'DELETE',
                     })
-                navigate("/");
-                }}
+                if (res.ok) {
+                    navigate("/");
+                } else {
+                    alert("Failed to delete poll");
+                }
+            }}
             >
                 Delete Poll
             </button>
