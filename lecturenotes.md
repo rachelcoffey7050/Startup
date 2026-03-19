@@ -310,3 +310,32 @@ Jest will show you the test coverage so you know that you are testing all your c
 Commit things that work.
 
 Front end testing - Playwrite. Allows you to take over the browswer. Works well with VS code and AI.
+
+## March 19 - websocket
+
+### HTTP
+Great for client initialted request but doesn't allow bidirectional messages. Server can't decide to alert the user.
+
+### Websocket
+Upgrade of HTTP. Either side can send data at any time. Effiecient and has widespread support. 
+Make a HTTP connection upgraded to websocket, then websocket can connect it.
+It can then forward the message to other users. Proxied peer-to-peer.
+
+```
+const { WebSocketServer } = require('ws');
+
+const wss = new WebSocketServer({ port: 3000 });
+
+wss.on('connection', (ws) => {
+  ws.on('message', (data) => { //when you get a message, do the following
+    const msg = String.fromCharCode(...data);
+    console.log('received: %s', msg);
+
+    ws.send(`I heard you say "${msg}"`);
+  });
+
+  ws.send('Hello webSocket');
+});
+```
+use the socket tab on the network tab under inspect to see what it's doing.
+
