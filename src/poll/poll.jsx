@@ -32,7 +32,7 @@ export function Poll() {
          poll.voteCounts.length === poll.options.length
         ? poll.voteCounts
         : Array(poll.options.length).fill(0))
-    }})
+    }}, [poll]);
 
     const [totalCounts, setTotalCounts] = React.useState(0);
     React.useEffect(() => { 
@@ -41,7 +41,8 @@ export function Poll() {
 
     const [selected, setSelected] = React.useState(null);
 
-    function voting(index) {
+    function voting(index, e) {
+        //e.preventDefault();
         setVoted(true);
         const updatedCounts = voteCounts.map((count, i) =>
             i === index ? count + 1 : count
@@ -53,12 +54,17 @@ export function Poll() {
             voteCounts: updatedCounts,
         };
         fetch(`/api/polls/${id}`, {
-            method: 'POST',
+            method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updatedPoll),
-            })
+        })
+            .then(() => fetch(`/api/polls/${id}`))
             .then((response) => response.json())
-        } 
+            .then((updated) => {
+            setPoll(updated);
+            setVoteCounts(updated.voteCounts);
+        });
+    } 
 
 
     function leavePage() {
