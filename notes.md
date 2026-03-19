@@ -114,3 +114,23 @@ Update one field:
 ```js
 setPoll({ ...poll, title: "New Title" });
 ```
+
+## Service
+This was the hardest part by far! 
+It took me a long time to figure out what I was even supposed to be doing, because the lectures and readings made things more complicated that needed.
+
+The main idea is to add all the necessary imports and setup to the `index.js` file and then add the necessary endpoints. Finally, call those endpoints with blocks that look similar to this:
+```
+React.useEffect(() => {
+    fetch('/api/polls')
+      .then((response) => response.json())
+      .then((pollList) => {
+        setPollList(pollList);
+      });
+    }, []);
+```
+This took forever to figure out. And then when I did, I was having this issue where nothing was reaching the back end. After two days and rewriting most of my code, I discovered it was a simple error from forgetting to change my `vite.config.js` file to port 4000.
+I wasn't out of the woods yet. The process seemed simple, but making a few changes meant I had to rewrite a huge portion of how I did the code. 
+Debugging was very frustrating, and though the website is in a functional state, it is still possible to encounter bugs if you push it too far.
+
+The webAPI part was relativly easy.
