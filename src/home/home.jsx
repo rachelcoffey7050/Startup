@@ -1,7 +1,6 @@
 import React from 'react';
 import './home.css';
 import { NavLink } from 'react-router-dom';
-import { getPolls } from './service';
 
 export function Home() {
   

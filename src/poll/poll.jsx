@@ -26,6 +26,18 @@ export function Poll() {
 
     const [voteCounts, setVoteCounts] = React.useState([]);
 
+    const [pollList, setPollList] = React.useState([]);
+    React.useEffect(() => {
+        fetch("/api/polls")
+            .then(res => res.json())
+            .then(list => setPollList(list));
+        }, []);
+
+    const currentIndex = pollList.findIndex(p => p.id === id);
+    const nextPoll = pollList[currentIndex - 1]; 
+
+
+
     React.useEffect(() => {
     if (poll) {
         setVoteCounts(Array.isArray(poll.voteCounts) &&
@@ -95,7 +107,7 @@ export function Poll() {
                     <div id="btnRow">
                     <button className="btn my-custom-btn" onClick={() => voting(selected)} >Vote</button>
                     {numID > 0 && (
-                    <NavLink className="btn my-custom-btn" to={`/poll/${numID-1}`}>Next Poll</NavLink>
+                    <NavLink className="btn my-custom-btn" to={`/poll/${nextPoll.id}`}>Next Poll</NavLink>
                     )}
                     </div>
                 </form>
@@ -137,7 +149,7 @@ export function Poll() {
                 </fieldset>
                 {numID > 0 && (
                 <div id="btnRow">
-                <NavLink className="btn my-custom-btn" onClick={leavePage} to={`/poll/${numID-1}`}>Next Poll</NavLink>
+                <NavLink className="btn my-custom-btn" onClick={leavePage} to={`/poll/${nextPoll.id}`}>Next Poll</NavLink>
                 </div>
                 )}
             </div>

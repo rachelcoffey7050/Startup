@@ -1,12 +1,11 @@
 import React from 'react';
 import './create.css';
 import { useNavigate } from 'react-router-dom';
-import { createNewPoll } from './service';
 
 
 export function Create({}) {
   const [title, setTitle] = React.useState('Unnamed');
-  const [description, setDescription] = React.useState('description..');
+  const [description, setDescription] = React.useState('');
   const [options, setOptions] = React.useState(["1", "2"]);
   const [voteCounts, setVoteCounts] = React.useState(Array(options.length).fill(0))
   const navigate = useNavigate();
