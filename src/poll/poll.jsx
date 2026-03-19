@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-import { updatePoll } from './service';
 
 
 export function Poll() {
@@ -53,10 +52,10 @@ export function Poll() {
             ...poll,
             voteCounts: updatedCounts,
         };
-        fetch('/api/polls/${id}', {
+        fetch(`/api/polls/${id}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(updatePoll),
+            body: JSON.stringify(updatedPoll),
             })
             .then((response) => response.json())
         } 
@@ -113,6 +112,8 @@ export function Poll() {
             </main>)
     }
   
+    console.log("voteCounts:", voteCounts);
+    console.log("totalCounts:", totalCounts);
     if (voted) {return (
         <main className='poll-page'>
             <div id="resultsView"> 
@@ -123,7 +124,7 @@ export function Poll() {
                     <ul>
                         {poll.options.map((option, i) =>
                         <li key={i}><label forhtml="voteCount">{option}</label>
-                        <meter id="votesMeter" min="0" max="100" value={(voteCounts[i]/totalCounts)*100} optimum="100" low="33"></meter><span id="voteCount">{voteCounts[i]}</span></li>
+                        <meter id="votesMeter" min="0" max="100" value={totalCounts === 0 ? 0 :(voteCounts[i]/totalCounts)*100} optimum="100" low="33"></meter><span id="voteCount">{voteCounts[i]}</span></li>
                         )}
                     </ul>
                 </fieldset>

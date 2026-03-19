@@ -20,12 +20,12 @@ app.use(express.json());
 // Use the cookie parser middleware for tracking authentication tokens
 app.use(cookieParser());
 
-// Serve up the applications static content
-app.use(express.static('public'));
-
 // Router for service endpoints
 const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
+
+// Serve up the applications static content
+app.use(express.static('public'));
 
 // CreateAuth token for a new user
 apiRouter.post('/auth/create', async (req, res) => {
@@ -50,8 +50,11 @@ apiRouter.post('/auth/login', async (req, res) => {
       res.send({ email: user.email });
       return;
     }
+    res.status(401).send({ msg: 'Unauthorized' });
   }
-  res.status(401).send({ msg: 'Unauthorized' });
+  if (!user) {
+    return res.status(404).send({ msg: "User not found" });
+  }
 });
 
 // DeleteAuth token if stored in cookie
@@ -75,11 +78,13 @@ const verifyAuth = async (req, res, next) => {
   }
 };
 
+//get all polls
 apiRouter.get('/polls', async (req, res) => {
   // const scores = await DB.getHighScores();
   res.send(polls);
 });
 
+// create poll
 apiRouter.post('/polls', async (req, res) => {
   const { title, description, options, voteCount } = req.body;
   if (!title|| !options || !Array.isArray(options)) {
@@ -110,6 +115,7 @@ apiRouter.delete('/polls/:id', verifyAuth, async (req, res) => {
   res.status(204).end();
 });
 
+// get one poll
 apiRouter.get("/polls/:id", async (req, res) => {
   const id = req.params.id;
   const index = polls.findIndex(p => p.id === id);
@@ -125,6 +131,7 @@ apiRouter.get("/polls/:id", async (req, res) => {
   res.send(poll)
 })
 
+// update poll
 apiRouter.put("/polls/:id", async (req, res) => {
   const id = req.params.id;
   const index = polls.findIndex(p => p.id === id);

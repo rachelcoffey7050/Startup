@@ -15,7 +15,7 @@ export function Login({ setCurrentUser }) {
     }
 
   async function logout(){
-    response = await fetch('/api/auth/logout', {
+    fetch('/api/auth/logout', {
       method: 'DELETE',
     });
     localStorage.removeItem("currentUser");
@@ -54,33 +54,38 @@ export function Login({ setCurrentUser }) {
 
 export async function registerOrLoginUser(email, password){
   
-    fetch('/api/auth/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password }),
-  })
-  .then((response) => response.json())
+  fetch('/api/auth/login', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ email, password }),
+})
+    .then((response) => {
+    if (response.ok) {
+      return response.json();   // login success
+    }
 
-  if (response.ok) {
-    return
-  }
-
-  if (response.status === 401) {
-      fetch('/api/auth/create', {
+  if (response.status === 404) { //meaning the user was not found at all
+    // try create
+    return fetch('/api/auth/create', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
+    });
+  }
+
+    throw new Error("Unexpected login error");
     })
-    .then((response) => response.json())
+    .then((response) => {
+    if (!response) return; // already handled
 
     if (response.ok) {
-      return;
+      return response.json();   // create success
     }
 
     if (response.status === 409) {
       alert("Incorrect Password for Existing User");
       return;
-  }
-   alert("Unable to login or create user");
-}
+    }
+
+  })
 }
