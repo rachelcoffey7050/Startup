@@ -26,6 +26,7 @@ export function Poll() {
 
     const [voteCounts, setVoteCounts] = React.useState([]);
 
+    // make it possible to travel to next poll
     const [pollList, setPollList] = React.useState([]);
     React.useEffect(() => {
         fetch("/api/polls")
@@ -33,8 +34,20 @@ export function Poll() {
             .then(list => setPollList(list));
         }, []);
 
+    let nextPollId = null;
+
+    if (pollList && pollList.length > 0) {
     const currentIndex = pollList.findIndex(p => p.id === id);
-    const nextPoll = pollList[currentIndex - 1]; 
+
+    if (currentIndex !== -1) {
+        const nextIndex =
+        currentIndex === 0
+            ? pollList.length - 1
+            : currentIndex - 1;
+
+        nextPollId = pollList[nextIndex].id;
+    }
+    }
 
 
 
@@ -107,7 +120,7 @@ export function Poll() {
                     <div id="btnRow">
                     <button className="btn my-custom-btn" onClick={() => voting(selected)} >Vote</button>
                     {numID > 0 && (
-                    <NavLink className="btn my-custom-btn" to={`/poll/${nextPoll.id}`}>Next Poll</NavLink>
+                    <NavLink className="btn my-custom-btn" to={nextPollId ? `/poll/${nextPollId}` : "#"}>Next Poll</NavLink>
                     )}
                     </div>
                 </form>
@@ -130,9 +143,7 @@ export function Poll() {
             )}
             </main>)
     }
-  
-    console.log("voteCounts:", voteCounts);
-    console.log("totalCounts:", totalCounts);
+
     if (voted) {return (
         <main className='poll-page'>
             <div id="resultsView"> 
@@ -149,7 +160,7 @@ export function Poll() {
                 </fieldset>
                 {numID > 0 && (
                 <div id="btnRow">
-                <NavLink className="btn my-custom-btn" onClick={leavePage} to={`/poll/${nextPoll.id}`}>Next Poll</NavLink>
+                <NavLink className="btn my-custom-btn" onClick={leavePage} to={nextPollId ? `/poll/${nextPollId}` : "#"}>Next Poll</NavLink>
                 </div>
                 )}
             </div>
