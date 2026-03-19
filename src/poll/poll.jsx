@@ -101,8 +101,9 @@ export function Poll() {
             <button
                 className="btn delete-btn"
                 onClick={() => {
-                polls.splice(id, 1);
-                localStorage.setItem("polls", JSON.stringify(polls));
+                fetch(`/api/polls/${id}`, {
+                    method: 'DELETE',
+                    })
                 navigate("/");
                 }}
             >
