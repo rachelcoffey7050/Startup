@@ -60,6 +60,10 @@ function getPoll(_id) {
   return pollCollection.findOne({ id: _id });
 }
 
+async function updatePoll(_id, poll){
+  await userCollection.updateOne({ id: _id }, { $set: poll });
+}
+
 module.exports = {
   getUser,
   getUserByToken,

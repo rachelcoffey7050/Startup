@@ -132,7 +132,7 @@ apiRouter.put("/polls/:id", async (req, res) => {
     ...req.body,
   };
 
-  await DB.updatePoll(id);
+  await DB.updatePoll(id, updated);
   res.send(updated);
 })
 
