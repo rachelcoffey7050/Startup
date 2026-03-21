@@ -42,7 +42,7 @@ async function addPoll(poll) {
   return pollCollection.insertOne(poll);
 }
 
-async function getPollList() {
+function getPollList() {
   const query = { poll: { $gt: 0, $lt: 500 } };
   const cursor = scoreCollection.find(query);
   return cursor.toArray();
@@ -54,6 +54,10 @@ async function getPollList() {
 // }
 async function deletePoll(_id) {
   await pollCollection.deleteOne({ id: _id });
+}
+
+function getPoll(_id) {
+  return pollCollection.findOne({ id: _id });
 }
 
 module.exports = {
