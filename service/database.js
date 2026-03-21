@@ -38,17 +38,13 @@ async function updateUserRemoveAuth(user) {
   await userCollection.updateOne({ email: user.email }, { $unset: { token: 1 } });
 }
 
-async function addScore(score) {
-  return scoreCollection.insertOne(score);
+async function addPoll(poll) {
+  return pollCollection.insertOne(poll);
 }
 
-function getHighScores() {
-  const query = { score: { $gt: 0, $lt: 900 } };
-  const options = {
-    sort: { score: -1 },
-    limit: 10,
-  };
-  const cursor = scoreCollection.find(query, options);
+function getPollList() {
+  const query = { poll: { $gt: 0, $lt: 500 } };
+  const cursor = scoreCollection.find(query);
   return cursor.toArray();
 }
 
@@ -58,6 +54,6 @@ module.exports = {
   addUser,
   updateUser,
   updateUserRemoveAuth,
-  addScore,
-  getHighScores,
+  addPoll,
+  getPollList,
 };
