@@ -4,12 +4,9 @@ const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
 const app = express();
-// const DB = require('./database.js');
+const DB = require('./database.js');
 
 const authCookieName = 'token';
-
-let users = [];
-let polls = [];
 
 // The service port may be set on the command line
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -45,7 +42,7 @@ apiRouter.post('/auth/login', async (req, res) => {
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
       user.token = uuid.v4();
-      // await DB.updateUser(user);
+      await DB.updateUser(user);
       setAuthCookie(res, user.token);
       res.send({ email: user.email });
       return;
@@ -61,8 +58,7 @@ apiRouter.post('/auth/login', async (req, res) => {
 apiRouter.delete('/auth/logout', async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
-    // await DB.updateUserRemoveAuth(user);
-    delete user.token;
+    await DB.updateUserRemoveAuth(user);
   }
   res.clearCookie(authCookieName);
   res.status(204).end();
@@ -80,7 +76,7 @@ const verifyAuth = async (req, res, next) => {
 
 //get all polls
 apiRouter.get('/polls', async (req, res) => {
-  // const scores = await DB.getHighScores();
+  const polls = await DB.getPollList();
   res.send(polls);
 });
 
@@ -98,32 +94,24 @@ apiRouter.post('/polls', async (req, res) => {
     options,
     voteCounts: voteCount || Array(options.length).fill(0),
   };
-  polls.push(newPoll);
+  await DB.addPoll(newPoll);
   res.send(newPoll);
 });
 
 apiRouter.delete('/polls/:id', verifyAuth, async (req, res) => {
-  const id = req.params.id;
-  const index = polls.findIndex(p => p.id === id);
-
-  if (index === -1) {
-    res.status(404).send({ msg: 'Poll not found' });
-    return;
-  }
-
-  polls.splice(index, 1);
+  await DB.deletePoll(id);
   res.status(204).end();
 });
 
 // get one poll
 apiRouter.get("/polls/:id", async (req, res) => {
   const id = req.params.id;
-  const index = polls.findIndex(p => p.id === id);
-  if (index === -1) {
-    res.status(404).send({ msg: 'Poll not found' });
-    return;
-  }
-  const poll = polls[index]
+  // const index = polls.findIndex(p => p.id === id);
+  // if (index === -1) {
+  //   res.status(404).send({ msg: 'Poll not found' });
+  //   return;
+  // }
+  const poll = DB.getPoll(id);
   if (!poll) {
     res.status(404).send({ msg: 'Poll not found' });
     return;
@@ -134,17 +122,17 @@ apiRouter.get("/polls/:id", async (req, res) => {
 // update poll
 apiRouter.put("/polls/:id", async (req, res) => {
   const id = req.params.id;
-  const index = polls.findIndex(p => p.id === id);
-  if (index === -1) {
-    res.status(404).send({ msg: 'Poll not found' });
-    return;
-  }
+  // const index = polls.findIndex(p => p.id === id);
+  // if (index === -1) {
+  //   res.status(404).send({ msg: 'Poll not found' });
+  //   return;
+  // }
   const updated = {
     ...polls[index],
     ...req.body,
   };
 
-  polls[index] = updated;
+  await DB.updatePoll(id);
   res.send(updated);
 })
 
@@ -166,8 +154,7 @@ async function createUser(email, password) {
     password: passwordHash,
     token: uuid.v4(),
   };
-  users.push(user);
-  //await DB.addUser(user);
+  await DB.addUser(user);
 
   return user;
 }
@@ -175,11 +162,11 @@ async function createUser(email, password) {
 async function findUser(field, value) {
   if (!value) return null;
 
-  // if (field === 'token') {
-  //   return DB.getUserByToken(value);
-  // }
-  // return DB.getUser(value);
-  return users.find((u) => u[field] === value);
+  if (field === 'token') {
+    return DB.getUserByToken(value);
+  }
+  return DB.getUser(value);
+  // return users.find((u) => u[field] === value);
 }
 
 // setAuthCookie in the HTTP response
