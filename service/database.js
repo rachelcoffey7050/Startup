@@ -3,9 +3,9 @@ const config = require('service/dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
-const db = client.db('simon');
+const db = client.db('storypolls');
 const userCollection = db.collection('user');
-const scoreCollection = db.collection('score');
+const scoreCollection = db.collection('poll');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
