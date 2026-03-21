@@ -72,4 +72,7 @@ module.exports = {
   updateUserRemoveAuth,
   addPoll,
   getPollList,
+  deletePoll,
+  getPoll,
+  updatePoll,
 };
