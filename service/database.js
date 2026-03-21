@@ -42,10 +42,18 @@ async function addPoll(poll) {
   return pollCollection.insertOne(poll);
 }
 
-function getPollList() {
+async function getPollList() {
   const query = { poll: { $gt: 0, $lt: 500 } };
   const cursor = scoreCollection.find(query);
   return cursor.toArray();
+}
+
+// import { ObjectId } from "mongodb";
+// async function deletePoll(id) {
+//   return pollCollection.deleteOne({ _id: new ObjectId(id) });
+// }
+async function deletePoll(_id) {
+  await pollCollection.deleteOne({ id: _id });
 }
 
 module.exports = {
