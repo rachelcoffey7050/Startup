@@ -14,15 +14,24 @@ export function Login({ setCurrentUser }) {
       navigate("/");
     }
 
-  async function logout(){
-    fetch('/api/auth/logout', {
+  async function logout() {
+  try {
+    const response = await fetch('/api/auth/logout', {
       method: 'DELETE',
     });
+    if (!response.ok) {
+      console.error("Logout failed:", response.status);
+      return;
+    }
+    // Only runs if logout succeeded
     localStorage.removeItem("currentUser");
-    setCurrentUser(null)
-    setEmail('')
+    setCurrentUser(null);
+    setEmail('');
     navigate("/");
-  } 
+  } catch (err) {
+    console.error("Network error during logout:", err);
+  }
+}
 
   
   if (!localStorage.getItem("currentUser")){
@@ -72,11 +81,10 @@ export async function registerOrLoginUser(email, password){
       body: JSON.stringify({ email, password }),
     });
   }
-
-    throw new Error("Unexpected login error");
     })
     .then((response) => {
-    if (!response) return; // already handled
+    if (!response) {alert("Unexpected login error"); 
+      return;}
 
     if (response.ok) {
       return response.json();   // create success

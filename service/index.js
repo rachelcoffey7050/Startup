@@ -56,7 +56,8 @@ apiRouter.post('/auth/login', async (req, res) => {
 
 // DeleteAuth token if stored in cookie
 apiRouter.delete('/auth/logout', async (req, res) => {
-  const user = await findUser('token', req.cookies[authCookieName]);
+  const token = req.cookies[authCookieName];
+  const user = token ? await findUser('token', token) : null;
   if (user) {
     await DB.updateUserRemoveAuth(user);
   }
@@ -99,6 +100,7 @@ apiRouter.post('/polls', async (req, res) => {
 });
 
 apiRouter.delete('/polls/:id', verifyAuth, async (req, res) => {
+  const id = req.params.id;
   await DB.deletePoll(id);
   res.status(204).end();
 });
@@ -106,11 +108,6 @@ apiRouter.delete('/polls/:id', verifyAuth, async (req, res) => {
 // get one poll
 apiRouter.get("/polls/:id", async (req, res) => {
   const id = req.params.id;
-  // const index = polls.findIndex(p => p.id === id);
-  // if (index === -1) {
-  //   res.status(404).send({ msg: 'Poll not found' });
-  //   return;
-  // }
   const poll = DB.getPoll(id);
   if (!poll) {
     res.status(404).send({ msg: 'Poll not found' });

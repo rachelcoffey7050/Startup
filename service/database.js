@@ -1,11 +1,11 @@
 const { MongoClient } = require('mongodb');
-const config = require('service/dbConfig.json');
+const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const db = client.db('storypolls');
 const userCollection = db.collection('user');
-const scoreCollection = db.collection('poll');
+const pollCollection = db.collection('poll');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -44,14 +44,10 @@ async function addPoll(poll) {
 
 function getPollList() {
   const query = { poll: { $gt: 0, $lt: 500 } };
-  const cursor = scoreCollection.find(query);
+  const cursor = pollCollection.find(query);
   return cursor.toArray();
 }
 
-// import { ObjectId } from "mongodb";
-// async function deletePoll(id) {
-//   return pollCollection.deleteOne({ _id: new ObjectId(id) });
-// }
 async function deletePoll(_id) {
   await pollCollection.deleteOne({ id: _id });
 }
