@@ -35,7 +35,7 @@ export default function App() {
     
     <Routes>
     <Route path='/' element={<Home />} exact />
-    <Route path='/polls/:id' element={<Poll />} />
+    <Route path='/poll/:id' element={<Poll />} />
     <Route path='/create' element={<Create />} />
     <Route path='/about' element={<About />} />
     <Route path='/login' element={<Login setCurrentUser={setCurrentUser} />} />
