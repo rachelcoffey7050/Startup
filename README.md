@@ -122,12 +122,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - you'll find it used in the index.js file
+- [x] **Static middleware for frontend** - done!
+- [x] **Calls to third party endpoints** - The background picture on the about page.
+- [x] **Backend service endpoints** - get polls, get poll, create, update, delete
+- [x] **Frontend calls service endpoints** - yes, though it was very painful to figure out.
+- [x] **Supports registration, login, logout, and restricted endpoint** - Yes. The login/registration is more similar to what we did in class than simon. The restricted endpoint is the delete poll, which only I can do, no other users.
 
 ## 🚀 DB deliverable
 
