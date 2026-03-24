@@ -14,12 +14,18 @@ export function Poll() {
     const numID = parseInt(id);
     const [poll, setPoll] = React.useState(null);
 
+    console.log("id from useParams:", id);
     React.useEffect(() => {
         fetch(`/api/polls/${id}`)
-          .then((response) => response.json())
+          .then((response) => {console.log("Raw response:", response); return response.json(); })
           .then((poll) => {
+            console.log("Parsed poll:", poll);
+            console.log("here");
             setPoll(poll);
-          });
+          })
+          .catch((err) => {
+            console.error("JSON parse error:", err);
+        });
         }, [id]);
 
     const [voted, setVoted] = React.useState(false);
@@ -96,8 +102,8 @@ export function Poll() {
         setVoted(false);
     }
 
-    if (!poll) {
-    return <p>Loading...</p>;
+    if (!poll || !poll.options) {
+        return <p>Loading...</p>;
     }
 
     

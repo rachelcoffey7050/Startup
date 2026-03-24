@@ -16,23 +16,9 @@ export function Home() {
 
     const reversed = [...pollList].reverse();
 
-    
-    function findRealIndex(index) {
-        return pollList.length - 1 - index;
-    }
-
-    function test(){
-      if (pollList) {
-        return "true";
-      }
-      else return "false";
-    }
-    console.log(pollList);
-
     return (
     <main className='home-page'>
         <h2>Poll List</h2>
-        <p>{test()}{pollList}</p>
 
         {reversed.map(poll => (
         <article key={poll.id} className="a-poll">

@@ -43,21 +43,20 @@ async function addPoll(poll) {
 }
 
 function getPollList() {
-  const query = { poll: { $gt: 0, $lt: 500 } };
-  const cursor = pollCollection.find(query);
+  const cursor = pollCollection.find();
   return cursor.toArray();
 }
 
-async function deletePoll(_id) {
-  await pollCollection.deleteOne({ id: _id });
+async function deletePoll(id_) {
+  await pollCollection.deleteOne({ id: id_});
 }
 
-function getPoll(_id) {
-  return pollCollection.findOne({ id: _id });
+function getPoll(id_) {
+  return pollCollection.findOne({ id: id_});
 }
 
-async function updatePoll(_id, poll){
-  await userCollection.updateOne({ id: _id }, { $set: poll });
+async function updatePoll(id_, poll){
+  await pollCollection.updateOne({ id: id_}, { $set: poll });
 }
 
 module.exports = {

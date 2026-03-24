@@ -108,7 +108,8 @@ apiRouter.delete('/polls/:id', verifyAuth, async (req, res) => {
 // get one poll
 apiRouter.get("/polls/:id", async (req, res) => {
   const id = req.params.id;
-  const poll = DB.getPoll(id);
+  console.log("Incoming request for poll:", id);
+  const poll = await DB.getPoll(id);
   if (!poll) {
     res.status(404).send({ msg: 'Poll not found' });
     return;
@@ -119,11 +120,6 @@ apiRouter.get("/polls/:id", async (req, res) => {
 // update poll
 apiRouter.put("/polls/:id", async (req, res) => {
   const id = req.params.id;
-  // const index = polls.findIndex(p => p.id === id);
-  // if (index === -1) {
-  //   res.status(404).send({ msg: 'Poll not found' });
-  //   return;
-  // }
   const updated = {
     ...polls[index],
     ...req.body,
