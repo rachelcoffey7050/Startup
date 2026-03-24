@@ -56,7 +56,8 @@ function getPoll(id) {
 }
 
 async function updatePoll(id, poll){
-  return pollCollection.updateOne({ id }, { $set: poll });
+  await pollCollection.updateOne({ id }, { $set: poll });
+  return await pollCollection.findOne({ id });
 }
 
 module.exports = {

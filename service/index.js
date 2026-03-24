@@ -48,6 +48,7 @@ apiRouter.post('/auth/login', async (req, res) => {
       return;
     }
     res.status(401).send({ msg: 'Unauthorized' });
+    return;
   }
   if (!user) {
     return res.status(404).send({ msg: "User not found" });
@@ -119,15 +120,25 @@ apiRouter.get("/polls/:id", async (req, res) => {
 
 // update poll
 apiRouter.put("/polls/:id", async (req, res) => {
-  const id = req.params.id;
-  const existing = await DB.getPoll(id);
-  const updated = {
-    ...existing,
-    ...req.body,
-  };
+  try {
+    const id = req.params.id;
+    const existing = await DB.getPoll(id);
+    if (!existing) {
+      return res.status(404).send({ msg: "Poll not found" });
+    }
+    const updated = {
+      voteCounts: req.body.voteCounts,
+    };
 
-  await DB.updatePoll(id, updated);
-  res.send(updated);
+    const result = await DB.updatePoll(id, updated);
+    if (!result) {
+      return res.status(500).send({ msg: "Failed to update poll" });
+    }
+    res.send(result);
+  } catch (error) {
+    console.error("Error updating poll:", error);
+    res.status(500).send({ msg: "Internal server error" });
+  }
 })
 
 // Default error handler
