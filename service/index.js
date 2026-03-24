@@ -122,10 +122,6 @@ apiRouter.get("/polls/:id", async (req, res) => {
 apiRouter.put("/polls/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const existing = await DB.getPoll(id);
-    if (!existing) {
-      return res.status(404).send({ msg: "Poll not found" });
-    }
     const updated = {
       voteCounts: req.body.voteCounts,
     };
