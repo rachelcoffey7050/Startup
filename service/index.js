@@ -167,7 +167,6 @@ async function findUser(field, value) {
     return DB.getUserByToken(value);
   }
   return DB.getUser(value);
-  // return users.find((u) => u[field] === value);
 }
 
 // setAuthCookie in the HTTP response

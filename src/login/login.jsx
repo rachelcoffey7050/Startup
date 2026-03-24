@@ -73,27 +73,24 @@ export async function registerOrLoginUser(email, password){
       return response.json();   // login success
     }
 
-  if (response.status === 404) { //meaning the user was not found at all
-    // try create
-    return fetch('/api/auth/create', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
+    if (response.status === 404) { //meaning the user was not found at all
+      // try create
+      return fetch('/api/auth/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      })
+      .then((response) => {
+      if (!response) {alert("Unexpected login error"); 
+        return;}
+        if (response.ok) {
+        return response.json();   // create success
+      }
+      if (response.status === 409) {
+        alert("Incorrect Password for Existing User");
+        return;
+      }
+    }
+  ) 
+    }});
   }
-    })
-    .then((response) => {
-    if (!response) {alert("Unexpected login error"); 
-      return;}
-
-    if (response.ok) {
-      return response.json();   // create success
-    }
-
-    if (response.status === 409) {
-      alert("Incorrect Password for Existing User");
-      return;
-    }
-
-  })
-}
