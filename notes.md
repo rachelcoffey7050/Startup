@@ -134,3 +134,9 @@ I wasn't out of the woods yet. The process seemed simple, but making a few chang
 Debugging was very frustrating, and though the website is in a functional state, it is still possible to encounter bugs if you push it too far.
 
 The webAPI part was relativly easy.
+
+## Database
+Writing the code was fairly simple, except for a few things that I did wrong. 
+This phase also gave me the time to fix some issues that never quite got resolve in the service or prior deliverables but were rearing their heads now.
+That took the majority of the time. The initial code took around an hour, figuring out why it wasn't quite working took maybe 20.
+The weirdest thing was an error that diapeared. The Get endpoint was returning an empty poll and thus not rendering, but when I opened my laptop the next day to show someone, the error was gone. I hope it doesn't mysteriously reappear.
