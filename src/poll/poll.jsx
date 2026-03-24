@@ -14,13 +14,10 @@ export function Poll() {
     const numID = parseInt(id);
     const [poll, setPoll] = React.useState(null);
 
-    console.log("id from useParams:", id);
     React.useEffect(() => {
         fetch(`/api/polls/${id}`)
-          .then((response) => {console.log("Raw response:", response); return response.json(); })
+          .then((response) => response.json())
           .then((poll) => {
-            console.log("Parsed poll:", poll);
-            console.log("here");
             setPoll(poll);
           })
           .catch((err) => {
@@ -73,13 +70,11 @@ export function Poll() {
     const [selected, setSelected] = React.useState(null);
 
     function voting(index, e) {
-        //e.preventDefault();
         setVoted(true);
         const updatedCounts = voteCounts.map((count, i) =>
             i === index ? count + 1 : count
         );
         setVoteCounts(updatedCounts);
-        //poll.voteCounts = updatedCounts;
         const updatedPoll = {
             ...poll,
             voteCounts: updatedCounts,

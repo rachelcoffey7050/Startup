@@ -120,8 +120,9 @@ apiRouter.get("/polls/:id", async (req, res) => {
 // update poll
 apiRouter.put("/polls/:id", async (req, res) => {
   const id = req.params.id;
+  const existing = await DB.getPoll(id);
   const updated = {
-    ...polls[index],
+    ...existing,
     ...req.body,
   };
 

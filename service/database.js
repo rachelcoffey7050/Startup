@@ -47,16 +47,16 @@ function getPollList() {
   return cursor.toArray();
 }
 
-async function deletePoll(id_) {
-  await pollCollection.deleteOne({ id: id_});
+async function deletePoll(id) {
+  await pollCollection.deleteOne({ id});
 }
 
-function getPoll(id_) {
-  return pollCollection.findOne({ id: id_});
+function getPoll(id) {
+  return pollCollection.findOne({ id });
 }
 
-async function updatePoll(id_, poll){
-  await pollCollection.updateOne({ id: id_}, { $set: poll });
+async function updatePoll(id, poll){
+  return pollCollection.updateOne({ id }, { $set: poll });
 }
 
 module.exports = {
