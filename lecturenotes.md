@@ -339,3 +339,28 @@ wss.on('connection', (ws) => {
 ```
 use the socket tab on the network tab under inspect to see what it's doing.
 
+## March 26 - typescript
+
+Javascript with type casting. It converts your typescript code with javascript. Give you errors if you mistype
+
+Also has interfaces: a object that has certain properties.
+
+### Performance
+Study: a one second delay 11% fewer page views, %16 decrese in customer satisfaction, %7 loss in conversion (profit). 
+
+How to:
+- optimize for real usage, not you local environment. Your work computer will be faster than the average computer. You have already chached things. What is bandwith like? How fast is their cpu? Storage?
+- optimize based on data (track statistics)
+- prioritize bottlenecks
+- look at download size (are you sending more than you need?)
+- compress, reduce, minify (vite automatically shortens you variables)
+- lazy load - loading icon, progress bars. 
+- use psychology - Even tell a joke while they wait
+
+In our startup, we have a single page application, which creates a higher startup time but shorter waits within the site
+
+To get real data: [PingDom](https://tools.pingdom.com/), [dotcom-tools](https://www.dotcom-tools.com/website-speed-test), inspect tab, etc.
+Inspect 
+- try it with 3G
+- lighthouse
+- 
