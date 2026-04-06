@@ -12,6 +12,22 @@ export function Home() {
       .then((pollList) => {
         setPollList(pollList);
       });
+        const port = window.location.port;
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        const socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
+        socket.onmessage = async (msg) => {
+          try {
+            const event = JSON.parse(await msg.data.text());
+            if (event.type === 'pollsUpdated') {
+              setPollList(event.polls);
+            }
+          } catch (err) {
+              console.error('WebSocket message error:', err);
+            }
+      }
+      return () => {
+        socket.close();
+      }
     }, []);
 
     const reversed = [...pollList].reverse();
@@ -27,7 +43,6 @@ export function Home() {
                     : poll.description}</p>
         </article>
         ))}
-        
-    </main>
+    </main>   
   );
 }

@@ -1,0 +1,100 @@
+Here’s the high‑level overview you asked for — **what you would change in your Home page to make the poll list update automatically via WebSocket**, without diving into code yet.
+
+This builds directly on the WebSocket pattern you already used in your Simon project (I see that tab open), so the mental model will feel familiar.
+
+---
+
+# ⭐ High‑Level Architecture Change
+
+Right now your Home page does this:
+
+1. Fetches `/api/polls` once on mount  
+2. Renders the list  
+3. Never updates again unless the user refreshes
+
+To make it real‑time, you introduce:
+
+### **A WebSocket connection that pushes poll updates from the server to the client.**
+
+Your Home page becomes:
+
+- **Initial fetch** → get the current list  
+- **WebSocket subscription** → listen for `"pollsUpdated"` events  
+- **Update state** → whenever the server broadcasts new poll data  
+
+---
+
+# ⭐ What changes on the frontend (Home.jsx)
+
+### 1. **Add a WebSocket connection inside `useEffect`**
+You’ll open a socket when the component mounts.
+
+### 2. **Listen for messages like `"polls"` or `"pollsUpdated"`**
+The server will send updated poll lists or incremental updates.
+
+### 3. **Update `pollList` when a message arrives**
+This triggers React to re-render automatically.
+
+### 4. **Close the WebSocket on unmount**
+To avoid memory leaks.
+
+---
+
+# ⭐ What changes on the backend
+
+Your backend needs to:
+
+### 1. **Create a WebSocket server**  
+You already have `peerProxy.js` — that’s perfect.
+
+### 2. **Broadcast poll updates**  
+Whenever a poll is created, edited, or voted on, the server sends:
+
+```js
+ws.send(JSON.stringify({ type: "pollsUpdated", polls }));
+```
+
+### 3. **Ensure clients receive the message**  
+Your Home page listens and updates.
+
+---
+
+# ⭐ High‑Level Flow (End‑to‑End)
+
+### **1. User loads Home page**
+- React fetches `/api/polls`
+- React opens WebSocket connection
+
+### **2. Someone creates or votes on a poll**
+- Backend updates the database
+- Backend broadcasts `"pollsUpdated"` with the new list
+
+### **3. Home page receives the message**
+- React updates `pollList`
+- UI updates instantly
+
+No refresh needed.
+
+---
+
+# ⭐ What you *don’t* need to change
+
+- Your `fetch('/api/polls')` can stay — it’s still useful for initial load  
+- Your rendering logic stays the same  
+- Your routing stays the same  
+
+---
+
+# ⭐ Summary in one sentence
+
+**You add a WebSocket connection in Home.jsx and broadcast poll updates from the backend so the Home page updates its state whenever new poll data arrives.**
+
+---
+
+If you want, I can now show you:
+
+- the exact React code changes  
+- the exact backend WebSocket broadcast code  
+- or a full working example that matches your existing project structure  
+
+Just tell me which direction you want to go.
