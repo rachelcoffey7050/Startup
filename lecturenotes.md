@@ -363,4 +363,52 @@ To get real data: [PingDom](https://tools.pingdom.com/), [dotcom-tools](https://
 Inspect 
 - try it with 3G
 - lighthouse
-- 
+
+## April 7 - HCI
+
+Don't make me think. 
+
+### Simplicity
+Minimize mental load.
+Consistent font sizes, colors, single purpose
+
+### Design as a story
+Appeal to humanity.
+
+### Layout and Consistency
+Contstant color shades and text sizes.
+
+Layout: app bar at the top, settings in corner, footer, nav bars on the edges. More you change, the more confusing it will be.
+
+Use a UI framework like bootstrap
+
+Sitemap - how they get to what they're searching for. Should be only a few clicks.
+Display user's location, anticipate paths, use site control. 
+
+Use Standard icons: hamburger menu, share, exit - recognition vs recall
+
+### Space
+Plenty of space between lines.
+
+Use images only if needed. Not just to add color.
+
+### Laws of HCI
+
+Hick's law - time it takes to make a decision increases logarithmically with number of choices presented.
+
+Fitt's law - time required to move to a target is a function of the distance and the wideth of the target
+
+Miller's law - humans can hold 7 objects in working memory
+
+Gestalt: Similarity, proximity, continuity, closure, figure-ground (focal content should not be competing with background)
+
+### Accessibility
+visual - high contrast, screen reader suppose. Images neeed alt text. Forms must have labels. 
+Audio - closed caption, visual animation
+physical - keyboard nativation, element ordering. Content must be navigable by keyboard
+
+### Walls
+Extra clicks, sign ups to get to content. Complexity walls. Can you simplify?
+
+### Internationalization
+language, currency, times and dates, numbers, icons, images. Ask AI.
