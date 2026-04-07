@@ -84,3 +84,22 @@ meter::-moz-meter-bar {
     }
 
 }
+
+.loading-screen {
+  min-height: calc(100vh - 110px); 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--background_color); 
+  text-align: center;
+}
+
+.loading-screen p {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #444;
+  opacity: 0.8;
+}
+
