@@ -4,15 +4,17 @@ function peerProxy(httpServer) {
   // Create a websocket object
   const socketServer = new WebSocketServer({ server: httpServer });
 
+  // Function to broadcast data to all connected clients
+  const broadcast = (data) => {
+    socketServer.clients.forEach((client) => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(JSON.stringify(data));
+      }
+    });
+  };
+
   socketServer.on('connection', (socket) => {
     socket.isAlive = true;
-
-    // Forward messages to everyone except the sender
-      socketServer.clients.forEach((client) => {
-        if (client !== socket && client.readyState === WebSocket.OPEN) {
-          client.send(JSON.stringify(data));
-        }
-      });
 
     // Respond to pong messages by marking the connection alive
     socket.on('pong', () => {
@@ -29,6 +31,8 @@ function peerProxy(httpServer) {
       client.ping();
     });
   }, 10000);
+
+  return broadcast;
 }
 
 module.exports = { peerProxy };

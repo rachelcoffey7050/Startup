@@ -25,8 +25,6 @@ app.use(`/api`, apiRouter);
 // Serve up the applications static content
 app.use(express.static('public'));
 
-peerProxy(httpService);
-
 // CreateAuth token for a new user
 apiRouter.post('/auth/create', async (req, res) => {
   if (await findUser('email', req.body.email)) {
@@ -101,8 +99,8 @@ apiRouter.post('/polls', async (req, res) => {
   };
   await DB.addPoll(newPoll);
   
-  const pollsList = DB.getPollList();
-  peerProxy({ type: "pollsUpdated", polls: pollsList });
+  const pollsList = await DB.getPollList();
+  broadcast({ type: "pollsUpdated", polls: pollsList });
   
   res.send(newPoll);
 });
@@ -112,8 +110,8 @@ apiRouter.delete('/polls/:id', verifyAuth, async (req, res) => {
   await DB.deletePoll(id);
   res.status(204).end();
 
-  const pollsList = DB.getPollList();
-  peerProxy({ type: "pollsUpdated", polls: pollsList });
+  const pollsList = await DB.getPollList();
+  broadcast({ type: "pollsUpdated", polls: pollsList });
 });
 
 // get one poll
@@ -141,8 +139,8 @@ apiRouter.put("/polls/:id", async (req, res) => {
       return res.status(500).send({ msg: "Failed to update poll" });
     }
 
-    const pollsList = DB.getPollList();
-    peerProxy({ type: "pollsUpdated", polls: pollsList });
+    const pollsList = await DB.getPollList();
+    broadcast({ type: "pollsUpdated", polls: pollsList });
 
     res.send(result);
   } catch (error) {
@@ -196,3 +194,5 @@ function setAuthCookie(res, authToken) {
 const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+const broadcast = peerProxy(httpService);
