@@ -19,7 +19,13 @@ export function Home() {
           try {
             const event = JSON.parse(msg.data);
             if (event.type === 'pollsUpdated') {
-              setPollList(event.polls);
+              if (Array.isArray(event.polls)) {
+                setPollList(event.polls);
+              } else {
+                fetch('/api/polls')
+                  .then(r => r.json())
+                  .then(setPollList);
+              }
             }
           } catch (err) {
               console.error('WebSocket message error:', err);
