@@ -339,3 +339,76 @@ wss.on('connection', (ws) => {
 ```
 use the socket tab on the network tab under inspect to see what it's doing.
 
+## March 26 - typescript
+
+Javascript with type casting. It converts your typescript code with javascript. Give you errors if you mistype
+
+Also has interfaces: a object that has certain properties.
+
+### Performance
+Study: a one second delay 11% fewer page views, %16 decrese in customer satisfaction, %7 loss in conversion (profit). 
+
+How to:
+- optimize for real usage, not you local environment. Your work computer will be faster than the average computer. You have already chached things. What is bandwith like? How fast is their cpu? Storage?
+- optimize based on data (track statistics)
+- prioritize bottlenecks
+- look at download size (are you sending more than you need?)
+- compress, reduce, minify (vite automatically shortens you variables)
+- lazy load - loading icon, progress bars. 
+- use psychology - Even tell a joke while they wait
+
+In our startup, we have a single page application, which creates a higher startup time but shorter waits within the site
+
+To get real data: [PingDom](https://tools.pingdom.com/), [dotcom-tools](https://www.dotcom-tools.com/website-speed-test), inspect tab, etc.
+Inspect 
+- try it with 3G
+- lighthouse
+
+## April 7 - HCI
+
+Don't make me think. 
+
+### Simplicity
+Minimize mental load.
+Consistent font sizes, colors, single purpose
+
+### Design as a story
+Appeal to humanity.
+
+### Layout and Consistency
+Contstant color shades and text sizes.
+
+Layout: app bar at the top, settings in corner, footer, nav bars on the edges. More you change, the more confusing it will be.
+
+Use a UI framework like bootstrap
+
+Sitemap - how they get to what they're searching for. Should be only a few clicks.
+Display user's location, anticipate paths, use site control. 
+
+Use Standard icons: hamburger menu, share, exit - recognition vs recall
+
+### Space
+Plenty of space between lines.
+
+Use images only if needed. Not just to add color.
+
+### Laws of HCI
+
+Hick's law - time it takes to make a decision increases logarithmically with number of choices presented.
+
+Fitt's law - time required to move to a target is a function of the distance and the wideth of the target
+
+Miller's law - humans can hold 7 objects in working memory
+
+Gestalt: Similarity, proximity, continuity, closure, figure-ground (focal content should not be competing with background)
+
+### Accessibility
+visual - high contrast, screen reader suppose. Images neeed alt text. Forms must have labels. 
+Audio - closed caption, visual animation
+physical - keyboard nativation, element ordering. Content must be navigable by keyboard
+
+### Walls
+Extra clicks, sign ups to get to content. Complexity walls. Can you simplify?
+
+### Internationalization
+language, currency, times and dates, numbers, icons, images. Ask AI.

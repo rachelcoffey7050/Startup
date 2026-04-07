@@ -140,3 +140,6 @@ Writing the code was fairly simple, except for a few things that I did wrong.
 This phase also gave me the time to fix some issues that never quite got resolve in the service or prior deliverables but were rearing their heads now.
 That took the majority of the time. The initial code took around an hour, figuring out why it wasn't quite working took maybe 20.
 The weirdest thing was an error that diapeared. The Get endpoint was returning an empty poll and thus not rendering, but when I opened my laptop the next day to show someone, the error was gone. I hope it doesn't mysteriously reappear.
+
+## Websocket
+I did a pretty simple application of this technology. Before, when you created a poll and it redirected you to home, it would not show the poll you had just created until you refreshed. Now, with websocket, it automatically updates the poll list. You will also see when another user creates a poll.
