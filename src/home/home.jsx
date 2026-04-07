@@ -12,12 +12,12 @@ export function Home() {
       .then((pollList) => {
         setPollList(pollList);
       });
-        const port = window.location.port;
+        const host = window.location.host;
         const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-        const socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
+        const socket = new WebSocket(`${protocol}://${host}/ws`);
         socket.onmessage = async (msg) => {
           try {
-            const event = JSON.parse(await msg.data.text());
+            const event = JSON.parse(msg.data);
             if (event.type === 'pollsUpdated') {
               setPollList(event.polls);
             }
