@@ -140,8 +140,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - Backends listens for poll updates
+- [x] **Frontend makes WebSocket connection** - home page
+- [x] **Data sent over WebSocket connection** - Polls list is sent over websocket
+- [x] **WebSocket data displayed** - websocket allows home page to update automatically when a poll is created. Before, you would have to refresh. 
+- [x] **Application is fully functional** - Everything works! I still want to add some stuff, mostly for fun.
